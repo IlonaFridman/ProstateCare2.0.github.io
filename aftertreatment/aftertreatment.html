@@ -24,13 +24,10 @@
   .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
 
   /* ==== HOME BUTTON – styles ==== */
-  .home-link{
-    position:fixed; inset:14px auto auto 14px; z-index:50; display:inline-flex; align-items:center; justify-content:center;
-    width:40px; height:40px; border-radius:10px; background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12); text-decoration:none;
-  }
-  .home-link:hover{transform:translateY(-1px)}
-  .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
-  .home-link svg{width:22px;height:22px;fill:#374151}
+  
+  
+  
+  
   /* ==== HOME BUTTON – styles END ==== */
 
   /* Slide heading */
@@ -81,7 +78,7 @@
 
   .acc-panel{margin:8px 0 12px 24px}
   .q-list{list-style:none;margin:8px 0 0 0;padding:0;font-size:20px;line-height:1.7}
-  .q-list li{margin:10px 0;display:flex;align-items:flex-start;gap:10px}
+  .q-list li{display:flex;gap:12px;padding:12px 8px;border-bottom:1px solid #eaeef5;line-height:1.45;align-items:flex-start;min-height:44px;}
   .q-list input{margin-top:6px;transform:scale(1.15)}
   .acc-panel[hidden]{display:none}
 
@@ -131,10 +128,41 @@
 </style>
 </head>
 <body>
+<header class="site-header" role="banner">
+      <a class="home-btn" href="../home.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+        Home
+      </a>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+        <span class="font-toggle-wrap" aria-label="Text size">
+          <span class="font-toggle-label">Text</span>
+          <button class="ft-btn active" data-size="normal" aria-label="Normal text size">A</button>
+          <button class="ft-btn" data-size="large" aria-label="Large text size" style="font-size:17px;">A+</button>
+        </span>
+        <a class="nav-card-btn" href="../careteam.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4 4-7 9-7s9 3 9 7"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Meet your care team</span><span class="nav-btn-sub">Who does what in your care</span></span>
+        </a>
+        <a class="nav-card-btn" href="../information.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Trusted websites</span><span class="nav-btn-sub">Safe places to learn more</span></span>
+        </a>
+        <a class="nav-card-btn" href="../instructions.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">How to use this guide</span><span class="nav-btn-sub">Instructions and tips</span></span>
+        </a>
+      </div>
+    </header>
+  <div class="journey-bar">
+    <a class="jb-home" href="../home.html">&#8962; Home</a>
+    <a class="jb-btn" href="../diagnosis/diagnosis.html">After diagnosis</a>
+    <a class="jb-btn" href="../choosingtreatment/choosingtreatment.html">Choosing treatment</a>
+    <a class="jb-btn" href="../treatment/treatment.html">During treatment</a>
+    <a class="jb-btn active" href="../aftertreatment/aftertreatment.html">After treatment</a>
+    <a class="jb-btn" href="../complementary/complementary.html">Integrative therapy</a>
+  </div>
+
   <!-- ==== HOME BUTTON – element ==== -->
-  <a class="home-link" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html" aria-label="Go to Home">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
-  </a>
 
 <a id="page-top"></a>
 
@@ -495,5 +523,97 @@
 <!-- Deps for client-side PDF -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin="anonymous"></script>
+
+<style id="site-header-css">
+  .site-header{ display:flex; gap:12px; justify-content:space-between; align-items:center; padding:8px 16px; background:#f0f7ff; border-bottom:1.5px solid #b5d4f4; flex-wrap:wrap; }
+  .home-btn{ display:inline-flex; align-items:center; gap:7px; padding:7px 12px; background:#185FA5; color:#fff; border:none; border-radius:10px; font-size:12px; font-weight:700; text-decoration:none; }
+  .home-btn:hover{ background:#0C447C; }
+  .nav-card-btn{ appearance:none; font-family:inherit; cursor:pointer; display:inline-flex; align-items:flex-start; gap:7px; text-decoration:none; background:#185FA5; color:#fff; border:1.5px solid #185FA5; padding:7px 12px; border-radius:10px; transition:background .15s; }
+  .nav-card-btn:hover{ background:#0C447C; }
+  .nav-btn-text{ display:flex; flex-direction:column; gap:1px; }
+  .nav-btn-main{ font-size:12px; font-weight:700; line-height:1.2; color:#fff; }
+  .nav-btn-sub{ font-size:10px; font-weight:400; opacity:0.85; line-height:1.2; color:#fff; }
+  .font-toggle-wrap{ display:inline-flex; align-items:center; gap:3px; background:#fff; border:1.5px solid #b5d4f4; border-radius:8px; padding:3px 7px; }
+  .font-toggle-label{ font-size:11px; color:#888780; margin-right:2px; }
+  .ft-btn{ background:none; border:none; cursor:pointer; padding:2px 6px; border-radius:5px; font-family:Arial,sans-serif; font-weight:700; color:#888780; line-height:1; }
+  .ft-btn.active{ background:#e6f1fb; color:#185FA5; }
+  body.font-large p,body.font-large li,body.font-large label,body.font-large .bc-simple-instr{font-size:20px!important;line-height:1.8!important;}
+  body.font-large .acc-header,body.font-large .q-list label{font-size:19px!important;}
+</style>
+<style id="journey-bar-css">
+  .journey-bar{ display:flex; align-items:center; gap:8px; padding:8px 16px; background:#f0f7ff; border-bottom:1px solid #d0e4f5; flex-wrap:wrap; }
+  .jb-home{ display:inline-flex; align-items:center; gap:5px; padding:5px 12px; border-radius:20px; background:#fff; border:1px solid #c5d8ec; color:#5F5E5A; font-size:12px; font-weight:600; text-decoration:none; }
+  .jb-btn{ display:inline-flex; align-items:center; gap:5px; padding:5px 14px; border-radius:20px; font-size:12px; font-weight:600; text-decoration:none; border:1px solid #c5d8ec; background:#fff; color:#5a6a7a; transition:background .15s; }
+  .jb-btn:hover{ background:#e6f1fb; color:#185FA5; }
+  .jb-btn.active{ background:#185FA5; color:#fff; border-color:#185FA5; }
+  .jb-btn.active::before{ content:"●"; font-size:8px; margin-right:2px; }
+  .jb-btn:not(.active)::before{ content:"○"; font-size:8px; margin-right:2px; color:#aaa; }
+</style>
+<style id="acc-counter-css">
+  .acc-counter{font-size:11px;background:#185FA5;color:#fff;padding:2px 9px;border-radius:10px;margin-left:auto;white-space:nowrap;font-weight:600;}
+  .acc-hint{font-size:13px;color:#185FA5;background:#e6f1fb;border-radius:6px;padding:6px 12px;text-align:center;margin:8px 0 4px;display:block;}
+  .q-list li{display:flex;gap:12px;padding:12px 8px;border-bottom:1px solid #eaeef5;line-height:1.45;align-items:flex-start;min-height:44px;}
+  .q-list li:last-child{border-bottom:none;}
+  .q-list input[type="checkbox"]{width:28px;height:28px;min-width:28px;margin-top:2px;cursor:pointer;accent-color:#185FA5;}
+  .q-list label{font-size:17px;cursor:pointer;line-height:1.5;}
+</style>
+<style id="sticky-css">
+  .sticky-actions{position:sticky;bottom:0;z-index:40;background:#fff;border-top:1.5px solid #b5d4f4;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 -2px 12px rgba(0,0,0,.08);}
+  .sticky-count{font-size:14px;color:#185FA5;font-weight:600;}
+  .sticky-btn-row{display:flex;gap:8px;}
+  .sticky-dl{background:#185FA5;color:#fff;border:none;border-radius:10px;padding:10px 20px;font-size:15px;font-weight:700;cursor:pointer;}
+  .sticky-dl:hover{background:#0C447C;}
+  .sticky-pr{background:#f1f5f9;color:#185FA5;border:1.5px solid #b5d4f4;border-radius:10px;padding:10px 20px;font-size:15px;font-weight:700;cursor:pointer;}
+  .sticky-dl:disabled,.sticky-pr:disabled{opacity:0.4;cursor:not-allowed;}
+</style>
+<style id="eres-banner-css">
+  .eres-banner{display:flex;align-items:center;gap:12px;background:#185FA5;color:#fff;border-radius:10px;padding:12px 16px;margin:12px 8px 8px;cursor:pointer;text-decoration:none;transition:background .15s;}
+  .eres-banner:hover{background:#0C447C;}
+  .eres-banner-icon{font-size:26px;flex-shrink:0;}
+  .eres-banner-title{font-size:15px;font-weight:700;line-height:1.3;}
+  .eres-banner-sub{font-size:13px;opacity:0.85;margin-top:2px;line-height:1.4;}
+  .eres-banner-arrow{font-size:22px;font-weight:700;flex-shrink:0;opacity:0.85;}
+  .home-link::after{content:none!important;display:none!important;}
+</style>
+
+<div class="sticky-actions" id="stickyBar" aria-live="polite">
+  <span class="sticky-count" id="stickyCount">No questions selected yet</span>
+  <div class="sticky-btn-row">
+    <button class="sticky-dl" id="stickyDownload" onclick="document.getElementById('downloadPdfBtn').click()" disabled>&#8659; Download PDF</button>
+    <button class="sticky-pr" id="stickyPrint" onclick="document.getElementById('printBtn').click()" disabled>&#9113; Print</button>
+  </div>
+</div>
+
+<script id="font-toggle-js">
+(function(){
+  var K='bc_font_large';
+  function apply(large){document.body.classList.toggle('font-large',large);document.querySelectorAll('.ft-btn').forEach(function(b){b.classList.toggle('active',large?b.dataset.size==='large':b.dataset.size==='normal');});try{localStorage.setItem(K,large?'1':'0');}catch(e){}}
+  var s;try{s=localStorage.getItem(K);}catch(e){}
+  window.addEventListener('DOMContentLoaded',function(){apply(s==='1');document.querySelectorAll('.ft-btn').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.size==='large');});});});
+})();
+</script>
+<script id="sticky-js">
+(function(){
+  function upd(){var n=document.querySelectorAll('.q-list input[type="checkbox"]:checked').length;var c=document.getElementById('stickyCount'),d=document.getElementById('stickyDownload'),p=document.getElementById('stickyPrint');if(c)c.textContent=n>0?n+' question'+(n>1?'s':'')+' selected':'No questions selected yet';if(d)d.disabled=n===0;if(p)p.disabled=n===0;}
+  document.addEventListener('change',function(e){if(e.target&&e.target.type==='checkbox')upd();});upd();
+})();
+</script>
+<script id="acc-counter-js">
+(function(){
+  var btns=document.querySelectorAll('.acc-header'),total=btns.length;
+  btns.forEach(function(btn,idx){var c=document.createElement('span');c.className='acc-counter';c.textContent=(idx+1)+' of '+total;btn.appendChild(c);});
+  function hint(){var ex=document.querySelector('.acc-hint');if(ex)ex.remove();var open=null;document.querySelectorAll('.acc-panel').forEach(function(p){if(!p.hidden)open=p;});if(!open)return;var rem=0,found=false;document.querySelectorAll('.acc-header').forEach(function(b){var id=b.getAttribute('aria-controls'),p=id?document.getElementById(id):null;if(p&&p===open)found=true;else if(found&&p&&p.hidden)rem++;});if(rem>0){var h=document.createElement('span');h.className='acc-hint';h.textContent=rem+' more section'+(rem>1?'s':'')+' below ↓';open.appendChild(h);}}
+  document.addEventListener('click',function(e){if(e.target&&(e.target.classList.contains('acc-header')||e.target.closest('.acc-header')))setTimeout(hint,50);});setTimeout(hint,200);
+})();
+</script>
+<script id="eres-banner-js">
+(function(){
+  var H="../aftertreatment/aftertreatmentinfo.html";
+  function inject(){document.querySelectorAll('.acc-panel').forEach(function(panel){if(panel.querySelector('.eres-banner'))return;var a=document.createElement('a');a.className='eres-banner';a.href=H;a.target='_blank';a.rel='noopener';a.innerHTML='<span class="eres-banner-icon" aria-hidden="true">📚</span><span style="flex:1"><span class="eres-banner-title">Read trusted websites on this topic</span><br><span class="eres-banner-sub">Safe, reviewed health information — opens in a new tab</span></span><span class="eres-banner-arrow" aria-hidden="true">›</span>';panel.appendChild(a);});}
+  window.addEventListener('DOMContentLoaded',function(){setTimeout(inject,150);});
+  document.addEventListener('click',function(e){if(e.target&&(e.target.classList.contains('acc-header')||e.target.closest('.acc-header')))setTimeout(inject,60);});
+})();
+</script>
+
 </body>
 </html>

@@ -32,6 +32,17 @@
       .header{ display:flex; gap:16px; justify-content:flex-end; align-items:center; margin-bottom:8px }
 
       /* Top buttons + make fonts consistent with primary button */
+      .home-btn{ display:inline-flex; align-items:center; gap:7px; padding:7px 12px; background:#185FA5; color:#fff; border:none; border-radius:10px; font-size:12px; font-weight:700; text-decoration:none; cursor:pointer; transition:background .15s; }
+      .home-btn:hover{ background:#0C447C; }
+      .nav-card-btn{ appearance:none; font-family:inherit; cursor:pointer; display:inline-flex; align-items:flex-start; gap:7px; text-decoration:none; background:#185FA5; color:#fff; border:1.5px solid #185FA5; padding:7px 12px; border-radius:10px; transition:background .15s, transform .06s; }
+      .nav-card-btn:hover{ background:#0C447C; border-color:#0C447C; transform:translateY(-1px); }
+      .nav-btn-text{ display:flex; flex-direction:column; gap:1px; }
+      .nav-btn-main{ font-size:12px; font-weight:700; line-height:1.2; color:#fff; }
+      .nav-btn-sub{ font-size:10px; font-weight:400; opacity:0.85; line-height:1.2; color:#fff; }
+      .font-toggle-wrap{ display:inline-flex; align-items:center; gap:3px; background:#fff; border:1.5px solid #b5d4f4; border-radius:8px; padding:3px 7px; }
+      .font-toggle-label{ font-size:11px; color:#888780; margin-right:2px; }
+      .ft-btn{ background:none; border:none; cursor:pointer; padding:2px 6px; border-radius:5px; font-family:Arial,sans-serif; font-weight:700; color:#888780; line-height:1; }
+      .ft-btn.active{ background:#e6f1fb; color:#185FA5; }
       .top-button{
         background:linear-gradient(180deg,#6ea2cf,#588fbe); color:#fff; text-shadow:0 1px 0 rgba(0,0,0,.2);
         border:3px solid #fff; outline:1px solid #c7d9ea; text-decoration:none; padding:14px 22px; border-radius:14px;
@@ -46,12 +57,18 @@
 
       /* Cards */
       .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px }
+      .bc-welcome{
+        border-left:4px solid #185FA5; background:#f0f7ff; padding:14px 18px;
+        border-radius:0 10px 10px 0; margin-bottom:18px; font-size:16px; line-height:1.6; color:#0C447C;
+      }
       .card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:12px; min-height:220px; border:1px solid #e5e7eb }
       .thumb{ width:100%; height:160px; border-radius:14px; background:#e9eef5; margin-bottom:12px; overflow:hidden; display:block }
       .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
       .card-title a{ display:inline-block; text-decoration:none; color:inherit; font-weight:800 }
       .card-title{ font-size:20px; font-weight:800; line-height:1.2 }
       .card-desc{ font-size:15px; color:var(--muted); margin-top:6px; line-height:1.35 }
+      .card-btn{ display:inline-flex; align-items:center; gap:6px; margin-top:10px; background:#185FA5; color:#fff; font-size:14px; font-weight:700; padding:9px 16px; border-radius:10px; text-decoration:none; }
+      .card-btn:hover{ background:#0C447C; }
       @media (max-width:900px){ .grid{ grid-template-columns:1fr 1fr } }
       @media (max-width:640px){ .grid{ grid-template-columns:1fr } .header{ justify-content:center } }
 
@@ -125,12 +142,30 @@
   </head>
 
   <body>
-    <header class="container header">
-      <a class="top-button" href="./careteam.html">Your Care Team</a>
-      <a class="top-button" href="./information.html">Helpful Information Online</a>
-      <button id="backToInstructionsTop" class="top-button" type="button" aria-haspopup="dialog" aria-controls="introModal">
-        Back to instructions
-      </button>
+    <header class="container header" style="justify-content:space-between;">
+      <a class="home-btn" href="./home.html">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+        Home
+      </a>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="font-toggle-wrap" aria-label="Text size">
+          <span class="font-toggle-label">Text</span>
+          <button class="ft-btn active" data-size="normal" aria-label="Normal text size">A</button>
+          <button class="ft-btn" data-size="large" aria-label="Large text size" style="font-size:17px;">A+</button>
+        </span>
+        <a class="top-button nav-card-btn" href="./careteam.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4 4-7 9-7s9 3 9 7"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Meet your care team</span><span class="nav-btn-sub">Who does what in your care</span></span>
+        </a>
+        <a class="top-button nav-card-btn" href="./information.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Trusted websites</span><span class="nav-btn-sub">Safe places to learn more</span></span>
+        </a>
+        <a class="top-button nav-card-btn" href="./instructions.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">How to use this guide</span><span class="nav-btn-sub">Instructions and tips</span></span>
+        </a>
+      </div>
     </header>
 
     <!-- Instructions -->
@@ -155,8 +190,8 @@
             <p><strong>You're in control.</strong> Explore the section that feels right for you, or select “Start Here” to see a shorter list of questions.</p>
 
             <div class="intro-actions" role="group" aria-label="Instructions actions">
-              <button class="btn btn-primary" type="button" data-intro-close>Explore here</button>
-              <a class="btn btn-secondary" href="#" data-open="startModal" aria-haspopup="dialog" aria-controls="startModal">Open “Start here”</a>
+              <button class="btn btn-primary" type="button" data-intro-close>/button>
+              <a class="btn btn-secondary" href="#" data-open="startModal" aria-haspopup="dialog" aria-controls="startModal">See my first questions ›</a>
             </div>
           </div>
 
@@ -222,7 +257,7 @@
         <button class="icon-btn close" aria-label="Close dialog" data-close="startModal">✕</button>
 
         <div class="modal-header" aria-describedby="startModalIntro">
-          <h2 id="startModalHeading">Questions to ask your provider</h2>
+          <h2 id="startModalHeading">Your first questions to ask</h2>
           <div id="startModalIntro" class="lede-panel">
             <p>Many patients wonder, “What should I ask my provider? How can I move forward?”</p>
             <ul>
@@ -246,12 +281,14 @@
       
 
           <div class="links-pack">
-            <h2>More questions to explore</h2>
-            <a class="secondary" href="./diagnosis/diagnosis.html">After being diagnosed</a>
-            <a class="secondary" href="./choosingtreatment/choosingtreatment.html">Choosing treatment</a>
-            <a class="secondary" href="./treatment/treatment.html">During treatment</a>
-            <a class="secondary" href="./aftertreatment/aftertreatment.html">After treatment</a>
-            <a class="secondary" href="./complementary/complementary.html">About integrative therapy</a>
+            <h2 style="font-size:13px;font-weight:700;color:#5F5E5A;text-transform:uppercase;letter-spacing:0.07em;margin:0 0 14px;padding-top:18px;border-top:1.5px solid #dce8f5;">More questions to explore</h2>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;">
+              <a style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#f8fbff;border:1.5px solid #b5d4f4;border-radius:12px;text-decoration:none;color:#0C447C;font-size:14px;font-weight:600;transition:background .15s;" href="./diagnosis/diagnosis.html">&#128203; After being diagnosed <span style="margin-top:auto;align-self:flex-end;font-size:16px;color:#185FA5;">&#8250;</span></a>
+              <a style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#f8fbff;border:1.5px solid #b5d4f4;border-radius:12px;text-decoration:none;color:#0C447C;font-size:14px;font-weight:600;transition:background .15s;" href="./choosingtreatment/choosingtreatment.html">&#9878;&#65039; Choosing treatment <span style="margin-top:auto;align-self:flex-end;font-size:16px;color:#185FA5;">&#8250;</span></a>
+              <a style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#f8fbff;border:1.5px solid #b5d4f4;border-radius:12px;text-decoration:none;color:#0C447C;font-size:14px;font-weight:600;transition:background .15s;" href="./treatment/treatment.html">&#128138; During treatment <span style="margin-top:auto;align-self:flex-end;font-size:16px;color:#185FA5;">&#8250;</span></a>
+              <a style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#f8fbff;border:1.5px solid #b5d4f4;border-radius:12px;text-decoration:none;color:#0C447C;font-size:14px;font-weight:600;transition:background .15s;" href="./aftertreatment/aftertreatment.html">&#127775; After treatment <span style="margin-top:auto;align-self:flex-end;font-size:16px;color:#185FA5;">&#8250;</span></a>
+              <a style="display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#f8fbff;border:1.5px solid #b5d4f4;border-radius:12px;text-decoration:none;color:#0C447C;font-size:14px;font-weight:600;transition:background .15s;" href="./complementary/complementary.html">&#127807; Integrative therapy <span style="margin-top:auto;align-self:flex-end;font-size:16px;color:#185FA5;">&#8250;</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -638,7 +675,29 @@
           document.querySelector("style").innerHTML
         }</style></head><body onload="window.print()"><div style="padding:24px;max-width:850px;margin:0 auto">${
           handoutHTML(getSelectedByTopic())
-        }</div></body></html>`;
+        }</div>
+<style id="font-toggle-css">
+  body.font-large p,body.font-large li,body.font-large label,body.font-large .card-desc{font-size:20px!important;line-height:1.8!important;}
+  .q-list li{display:flex;gap:12px;padding:12px 8px;border-bottom:1px solid #eaeef5;line-height:1.45;align-items:flex-start;min-height:44px;}
+  .q-list input[type="checkbox"]{width:28px;height:28px;min-width:28px;margin-top:2px;cursor:pointer;accent-color:#185FA5;}
+  .q-list label{font-size:17px;cursor:pointer;line-height:1.5;}
+</style>
+<script id="font-toggle-js">
+(function(){
+  var K='bc_font_large';
+  function apply(large){
+    document.body.classList.toggle('font-large',large);
+    document.querySelectorAll('.ft-btn').forEach(function(b){b.classList.toggle('active',large?b.dataset.size==='large':b.dataset.size==='normal');});
+    try{localStorage.setItem(K,large?'1':'0');}catch(e){}
+  }
+  var s;try{s=localStorage.getItem(K);}catch(e){}
+  window.addEventListener('DOMContentLoaded',function(){
+    apply(s==='1');
+    document.querySelectorAll('.ft-btn').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.size==='large');});});
+  });
+})();
+</script>
+</body></html>`;
         const w=window.open("","_blank");
         w.document.open(); w.document.write(html); w.document.close();
       }
