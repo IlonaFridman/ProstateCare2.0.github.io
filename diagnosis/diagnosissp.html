@@ -1,0 +1,304 @@
+<!-- File: /public/slide-accordion.es.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Preguntas para hacer – Diseño de diapositivas</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+    --panel:#dfdfdf; --panel-hover:#d6d6d6; --ring:0 0 0 3px rgba(59,130,246,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  .container{max-width:1100px;margin:42px auto;padding:0 20px}
+  .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+  /* Inicio (casita) */
+  .home-link{
+    position:fixed; inset:14px auto auto 14px; z-index:50;
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:10px;
+    background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12);
+    text-decoration:none;
+  }
+  .home-link:hover{transform:translateY(-1px)}
+  .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+  .home-link svg{width:22px;height:22px;fill:#374151}
+
+  /* Barra de herramientas */
+  .toolbar{display:flex;gap:8px;align-items:center;margin:0 0 12px 0}
+  .tool-btn{
+    padding:8px 12px;border-radius:8px;border:1px solid var(--line);
+    background:#f5f6f8;color:#111;font-weight:700;cursor:pointer;
+    transition:transform .06s ease, background-color .15s ease;
+  }
+  .tool-btn:hover{background:#eef1f5;transform:translateY(-1px)}
+  .tool-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+
+  /* IZQUIERDA */
+  .stack{display:flex;flex-direction:column;gap:14px;min-width:300px}
+  .acc-header{
+    width:100%;display:flex;align-items:center;gap:10px;
+    padding:18px 20px 18px 46px;border:1px solid var(--line);
+    background:var(--panel);border-radius:6px;font-weight:800;cursor:pointer;
+    text-align:left;position:relative;transition:background-color .15s,transform .06s;
+    font-size:22px;
+  }
+  .acc-header::before{
+    content:"\2794"; /* ➔ */
+    position:absolute;left:14px;font-size:20px;color:#000;opacity:.8;transform:rotate(180deg);
+  }
+  .acc-header:hover{background:var(--panel-hover);transform:translateY(-1px)}
+  .acc-header:focus-visible{outline:none;box-shadow:var(--ring)}
+
+  .acc-panel{margin:8px 0 12px 24px}
+  .q-list{list-style:square;margin:8px 0 0 22px;padding:0;font-size:20px;line-height:1.7}
+  .q-list li{ margin:12px 0 }
+  .q-list li::marker{ color:#111; font-size:1.05em }
+  .acc-panel[hidden]{display:none}
+
+  /* CTA DERECHA (mismo tamaño que otra página) */
+  .side{display:flex;flex-direction:column;gap:28px}
+  .cta{
+    display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:20px;
+    padding:18px 28px;border-radius:16px;min-width:280px;
+    background:linear-gradient(180deg,#6ea2cf,#588fbe);
+    box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+    border:3px solid #fff;outline:1px solid #c7d9ea;text-shadow:0 1px 0 rgba(0,0,0,.2);
+    transition:transform .06s ease,filter .15s ease;
+  }
+  .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+  .cta.active{
+    filter:brightness(1.15);
+    background:linear-gradient(180deg,#cfe3f7,#e7f1fb);
+    color:#1f2937; text-shadow:none; outline-width:2px;
+  }
+
+  /* Imagen derecha */
+  .pic-wrap{width:100%;max-width:340px}
+  .pic{width:100%;height:auto;border:2px solid #c9ced6;border-radius:10px;display:block}
+
+  /* Volver arriba */
+  .to-top{
+    position:fixed;right:16px;bottom:16px;z-index:40;
+    padding:10px 14px;border-radius:9999px;border:1px solid var(--line);
+    background:#f8fafc;color:#111;font-weight:700;cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,.12);
+  }
+  .to-top[hidden]{display:none}
+  .to-top:hover{transform:translateY(-1px)}
+  .to-top:focus-visible{outline:none;box-shadow:var(--ring)}
+
+  @media (max-width:760px){
+    .layout{grid-template-columns:1fr;gap:28px}
+    .side .cta{width:100%;min-width:unset}
+  }
+</style>
+</head>
+<body>
+<!-- Botón Inicio -->
+<a class="home-link" href="https://ilonafridman.github.io/home.html" aria-label="Ir a Inicio">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+</a>
+
+<a id="page-top"></a>
+<main class="container" aria-label="Diseño tipo diapositiva">
+  <section class="layout">
+    <div>
+      <div class="toolbar" role="group" aria-label="Expandir o contraer todo">
+        <button id="expandAllBtn"  class="tool-btn" type="button">Expandir todo</button>
+        <button id="collapseAllBtn" class="tool-btn" type="button">Contraer todo</button>
+      </div>
+      <div id="stack" class="stack" aria-label="Categorías"></div>
+    </div>
+
+    <aside class="side" aria-label="Acciones">
+      <a id="cta-questions" class="cta" href="https://ilonafridman.github.io/diagnosis/diagnosis.html">Preguntas para hacer</a>
+      <!-- NOTA: por solicitud, usar la ruta *mal escrita* 'daignosisinfo.html' -->
+      <a id="cta-helpful"   class="cta" href="https://ilonafridman.github.io/diagnosis/daignosisinfo.html">Información útil</a>
+      <a id="cta-resources" class="cta" href="https://ilonafridman.github.io/diagnosis/diagnosisresources.html">Recursos para explorar</a>
+
+      <div class="pic-wrap">
+        <img class="pic"
+             src="https://ilonafridman.github.io/diagnosis/Patient%20and%20a%20doctor.png"
+             alt="Paciente hablando con un médico" />
+      </div>
+    </aside>
+  </section>
+</main>
+
+<!-- Volver arriba -->
+<button id="backToTop" class="to-top" type="button" aria-label="Volver arriba" hidden>Volver arriba</button>
+
+<script>
+  const DATA = [
+    { title: 'Diagnóstico y Pruebas', questions: [
+      '¿Cómo se realizó este diagnóstico?',
+      '¿Qué significan “grado”, “etapa” y “margen”?',
+      '¿Cuál es mi tipo de cáncer de mama?',
+      '¿Necesito pruebas o biopsias adicionales para confirmar el diagnóstico o entenderlo mejor?',
+      '¿Es necesario analizar marcadores tumorales en mi caso?',
+      '¿Debo hacerme pruebas de receptores de estrógeno?',
+      '¿Necesito realizar pruebas genéticas?',
+      '¿Con qué rapidez crece mi cáncer?',
+      '¿Tengo un mayor riesgo de cáncer de ovario u otros tipos de cáncer?'
+    ]},
+    { title: 'Tiempo y Urgencia', questions: [
+      '¿Cuánto tiempo tengo para decidir sobre mi tratamiento?',
+      '¿Cuánto tarda en haber resultados después de completar mis pruebas?'
+    ]},
+    { title: 'Coordinación', questions: [
+      '¿Quién formará parte de mi equipo de atención y cuál es el rol de cada persona?',
+      '¿Qué médicos debo ver y cuándo?',
+      '¿Hay un navegante de pacientes o trabajador(a) social con quien pueda hablar?',
+      '¿Con quién más debería hablar?',
+      '¿Cuál debería ser mi siguiente paso?'
+    ]},
+    { title: 'Acceso a la Información', questions: [
+      '¿Cómo puedo acceder o usar “mi portal”?',
+      '¿Dónde puedo obtener información adicional sobre el cáncer de mama?'
+    ]},
+    { title: 'Apoyo y Afrontamiento', questions: [
+      '¿Hay grupos de apoyo o servicios de asesoramiento que recomiende?',
+      '¿Qué debería decirle a mi familia y amistades sobre el cáncer de mama?',
+      '¿Cómo afectará el tratamiento del cáncer mi trabajo, mi vida y otras actividades?'
+    ]},
+    { title: 'Comprensión General', questions: [
+      '¿Cómo desarrollé cáncer?',
+      '¿Qué riesgos tiene mi familia debido a mi diagnóstico?',
+      '¿Necesito una consulta con un(a) especialista en reproducción?'
+    ]},
+    { title: 'Ensayos Clínicos y Segundas Opiniones', questions: [
+      '¿Qué ensayos clínicos están disponibles para mí?',
+      'Me gustaría saber más sobre los ensayos clínicos, ¿a quién debo preguntar?',
+      '¿Qué gastos asociados al ensayo clínico podrían no estar cubiertos por el seguro?',
+      '¿Cuándo debería buscar una segunda opinión?'
+    ]}
+  ];
+
+  let singleOpen = true;
+
+  (function renderAccordion(){
+    const stack = document.getElementById('stack');
+    DATA.forEach((cat, idx) => {
+      const id = `panel-${idx}`;
+      const btn = document.createElement('button');
+      btn.className = 'acc-header';
+      btn.type = 'button';
+      btn.id = `btn-${idx}`;
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-controls', id);
+      btn.textContent = ` ${cat.title}`;
+
+      const panel = document.createElement('div');
+      panel.className = 'acc-panel';
+      panel.id = id;
+      panel.setAttribute('role','region');
+      panel.setAttribute('aria-labelledby', btn.id);
+      panel.hidden = true;
+
+      const ul = document.createElement('ul');
+      ul.className = 'q-list';
+      cat.questions.forEach(q => {
+        const li = document.createElement('li');
+        li.textContent = q;
+        ul.appendChild(li);
+      });
+      panel.appendChild(ul);
+
+      btn.addEventListener('click', () => { togglePanel(idx); });
+      stack.appendChild(btn);
+      stack.appendChild(panel);
+    });
+
+    document.getElementById('expandAllBtn').addEventListener('click', expandAll);
+    document.getElementById('collapseAllBtn').addEventListener('click', collapseAll);
+    document.getElementById('backToTop').addEventListener('click', () => {
+      document.getElementById('page-top').scrollIntoView({behavior:'smooth'});
+    });
+
+    setActiveCTA();       // resaltar botón de página actual
+    updateBackToTop();    // estado inicial
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') collapseAll(); });
+  })();
+
+  function togglePanel(i){
+    const btn = document.getElementById(`btn-${i}`);
+    const panel = document.getElementById(`panel-${i}`);
+    const open = btn.getAttribute('aria-expanded') === 'true';
+
+    if (singleOpen) collapseAll();
+
+    if (open){
+      btn.setAttribute('aria-expanded','false');
+      panel.hidden = true;
+    }else{
+      btn.setAttribute('aria-expanded','true');
+      panel.hidden = false;
+      panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+    updateBackToTop();
+  }
+
+  function expandAll(){
+    singleOpen = false;
+    DATA.forEach((_, idx) => {
+      const b = document.getElementById(`btn-${idx}`);
+      const p = document.getElementById(`panel-${idx}`);
+      if (b && p){ b.setAttribute('aria-expanded','true'); p.hidden = false; }
+    });
+    document.getElementById('stack').scrollIntoView({ behavior:'smooth', block:'nearest' });
+    updateBackToTop();
+  }
+
+  function collapseAll(){
+    DATA.forEach((_, idx) => {
+      const b = document.getElementById(`btn-${idx}`);
+      const p = document.getElementById(`panel-${idx}`);
+      if (b) b.setAttribute('aria-expanded','false');
+      if (p) p.hidden = true;
+    });
+    singleOpen = true;
+    updateBackToTop();
+  }
+
+  function openPanelsCount(){
+    return document.querySelectorAll('.acc-panel:not([hidden])').length;
+  }
+
+  function updateBackToTop(){
+    const btn = document.getElementById('backToTop');
+    btn.hidden = openPanelsCount() < 2;  // mostrar cuando hay 2+ secciones abiertas
+  }
+
+  function setActiveCTA(){
+    const href = location.href.toLowerCase();
+    const q = document.getElementById('cta-questions');
+    const h = document.getElementById('cta-helpful');
+    const r = document.getElementById('cta-resources');
+    [q,h,r].forEach(el => { el.classList.remove('active'); el.removeAttribute('aria-current'); });
+
+    if (href.includes('diagnosisresources.html')) {
+      r.classList.add('active'); r.setAttribute('aria-current','page');
+    } else if (href.includes('diagnosisinfo.html') || href.includes('daignosisinfo.html')) {
+      h.classList.add('active'); h.setAttribute('aria-current','page');
+    } else {
+      q.classList.add('active'); q.setAttribute('aria-current','page');
+    }
+  }
+</script>
+</body>
+</html>
+

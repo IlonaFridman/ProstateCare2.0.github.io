@@ -1,0 +1,240 @@
+<!-- File: /public/diagnosisresources.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services to Contact</title>
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+      --panel:#ffffff; --panel-border:#c9ced6;
+      --cta0:#6ea2cf; --cta1:#588fbe; --cta-outline:#c7d9ea; --ring:0 0 0 3px rgba(59,130,246,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+
+    .container{max-width:1100px;margin:42px auto;padding:0 20px}
+    .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+    /* LEFT panel (white card) */
+    .info-card{
+      background:var(--panel);
+      border:2px solid var(--panel-border);
+      border-radius:8px;
+      padding:22px;
+      box-shadow:0 1px 0 rgba(0,0,0,.04);
+    }
+    .section-title{font-weight:800;margin:0 0 14px 0;font-size:22px}
+    .block{margin:18px 0}
+    .block h4{margin:0 0 6px 0;font-size:20px}
+    .block p{margin:4px 0}
+
+    /* RIGHT column (CTA links styled like buttons) */
+    .side{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+    .cta{
+      display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:20px;padding:18px 28px;border-radius:16px;
+      background:linear-gradient(180deg,var(--cta0),var(--cta1));min-width:280px;
+      box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+      border:3px solid #fff;outline:1px solid var(--cta-outline);text-shadow:0 1px 0 rgba(0,0,0,.2);
+      transition:transform .06s ease,filter .15s ease;
+      cursor:pointer;
+    }
+    .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+    .cta.active{filter:brightness(1.15);background:linear-gradient(180deg,#cfe3f7,#e7f1fb);color:#1f2937;text-shadow:none;outline-width:2px}
+
+    /* Disabled CTA */
+    .cta.disabled{
+      pointer-events:none;               /* Why: block mouse */
+      opacity:.55;
+      filter:saturate(.7);
+      cursor:not-allowed;
+    }
+    .cta.disabled:focus{outline:none;box-shadow:none}
+
+    /* Right image */
+    .pic-wrap{width:100%;max-width:340px}
+    .pic{width:100%;height:auto;border:2px solid var(--panel-border);border-radius:10px;display:block}
+
+    /* Home (little house) */
+    .home-link{
+      position:fixed; inset:14px auto auto 14px; z-index:50;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px;
+      background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12);
+      text-decoration:none;
+    }
+    .home-link:hover{transform:translateY(-1px)}
+    .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+    .home-link svg{width:22px;height:22px;fill:#374151}
+
+    /* Utility icon buttons — stacked vertically under Home (PDF + Email) */
+    .util-wrap{
+      position:fixed; left:14px; top:60px; z-index:50;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .util-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px;
+      background:#fff; border:1px solid var(--line);
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      cursor:pointer;
+    }
+    .util-btn:hover{transform:translateY(-1px)}
+    .util-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+    .util-btn svg{width:22px;height:22px;stroke:#000;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.6}
+
+    @media (max-width:760px){
+      .layout{grid-template-columns:1fr;gap:28px}
+      .side .cta{width:100%;min-width:unset}
+      .pic-wrap{max-width:100%}
+      .util-wrap{left:14px; top:60px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Home button -->
+  <a class="home-link" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html" aria-label="Go to Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+  </a>
+
+ 
+
+  <main class="container">
+    <section class="layout">
+      <!-- LEFT: Resources list -->
+      <article class="info-card" aria-label="Integrative Health resources">
+        <h3 class="section-title">Resources to explore</h3>
+
+        <div class="block">
+  <h4><strong>Therapies and Services</strong></h4>
+  <ul>
+     <li>
+      Non-pharmacologic stress and pain management
+    </li>
+    <li>
+       Integrative cancer and survivorship support to help patients throughout their care
+    </li>
+  </ul>
+  
+    <h5>Network Medical Director</h5>
+     <ul>
+    <li>Jillian Laura Cohen, MD</li>
+      </ul>
+  <h5>Acupuncturists</h5>
+  <ul>
+    <li>Hitomi Asano, LAC</li>
+    <li>Muftiya Issa, LAC</li>
+    <li>Judson D. Chaney, ND</li>
+  </ul>
+
+  <h5>Nutritionists</h5>
+  <ul>
+    <li>Mary K. Brighton, MS, RD</li>
+    <li>Marissa A. Winters, RD</li>
+  </ul>
+
+                <div class="block">
+          <h4><strong>Locations &amp; phone</strong></h4>
+          <p><strong>HMH – Integrative Health &amp; Medicine – Red Bank</strong></p>
+          <p>1 Riverview Plaza, Floor 2, Red Bank, NJ 07701</p>
+          <p><strong>Phone: 732-263-7999</strong></p>
+          <p><strong>HMH – Integrative Health &amp; Medicine – Neptune</strong></p>
+          <p>HOPE Tower at Jersey Shore University Medical Center<br/>19 Davis Avenue, First Floor, Neptune, NJ 07753</p>
+          <p><strong>Phone: 732-263-7999</strong></p>
+          <p>HMH main line: <strong>844-HMH-WELL</strong></p>
+        </div>
+        </div>
+      </article>
+
+      <!-- RIGHT: Tabs (top two links, last disabled) -->
+      <aside class="side" aria-label="Actions">
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html">Go back to the beginning</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/complementary.html" >Go back to questions</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/complementaryinfo.html" >Online Resources</a>
+       <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/integrative.html" >Integrative therapy at a glance</a>
+
+       
+        <div class="pic-wrap">
+          <img class="pic" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Team.jpg" alt="Integrative Health & Medicine care team" />
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Email this page.
+    function collectPageInfo(){
+      const title = document.title || 'Page';
+      const url = location.href;
+      const blocks = Array.from(document.querySelectorAll('.info-card .block')).map(b => {
+        const heading = b.querySelector('h4')?.innerText?.trim() || '';
+        const lines = Array.from(b.querySelectorAll('p')).map(p => `- ${p.innerText.trim()}`).join('\n');
+        return `## ${heading}\n${lines}`;
+      });
+      const body = `${title}\n${url}\n\n${blocks.join('\n\n')}`;
+      return { subject: `Notes: ${title}`, body };
+    }
+    function handleEmail(){
+      const { subject, body } = collectPageInfo();
+      const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto; /* Why: simpler for keyboard users */
+    }
+    document.getElementById('emailBtn').addEventListener('click', handleEmail);
+
+    // PDF: download whole page.
+    async function downloadPageAsPDF(){
+      const el = document.querySelector('main');
+      await exportElementToPDF(el, `resources-page.pdf`);
+    }
+    document.getElementById('pdfBtn').addEventListener('click', downloadPageAsPDF);
+
+    async function exportElementToPDF(element, filename){
+      await document.fonts?.ready?.catch(()=>{});
+      const canvas = await html2canvas(element, { backgroundColor: '#ffffff', scale: Math.min(2, window.devicePixelRatio || 1.5) });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new window.jspdf.jsPDF({ unit:'mm', format:'a4', compress: true });
+      const pageWidth  = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const imgWidth = pageWidth;
+      const imgHeight = canvas.height * (imgWidth / canvas.width);
+
+      if (imgHeight <= pageHeight){
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      } else {
+        let y = 0;
+        const pxPerMm = canvas.width / imgWidth;
+        const pageHeightPx = pageHeight * pxPerMm;
+        while (y < canvas.height){
+          const pageCanvas = document.createElement('canvas');
+          pageCanvas.width = canvas.width;
+          pageCanvas.height = Math.min(pageHeightPx, canvas.height - y);
+          const ctx = pageCanvas.getContext('2d');
+          ctx.drawImage(canvas, 0, y, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
+          const pageData = pageCanvas.toDataURL('image/png');
+          if (y !== 0) pdf.addPage();
+          pdf.addImage(pageData, 'PNG', 0, 0, imgWidth, pageHeight);
+          y += pageHeightPx;
+        }
+      }
+      pdf.save(filename);
+    }
+  </script>
+
+  <!-- Deps for client-side PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" integrity="sha256-jvW5C8Y4Xg7q7bQm3mQeZ0xjv4J1x2RQ6dHnZ5q5P1k=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" integrity="sha256-6m5o4uiz8v0QpVqQ1m4b1GZ1mJ6X7u7C2m2dRkFq7+0=" crossorigin="anonymous"></script>
+</body>
+</html>

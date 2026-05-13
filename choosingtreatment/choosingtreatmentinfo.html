@@ -1,0 +1,152 @@
+<!-- File: /public/read-more-resources.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Treatment for Prostate Cancer</title>
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+      --panel:#ffffff; --panel-border:#c9ced6;
+      --cta0:#6ea2cf; --cta1:#588fbe; --cta-outline:#c7d9ea; --ring:0 0 0 3px rgba(59,130,246,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+
+    .container{max-width:1100px;margin:42px auto;padding:0 20px}
+    .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+    /* LEFT card */
+    .info-card{
+      background:var(--panel);
+      border:2px solid var(--panel-border);
+      border-radius:8px;
+      padding:22px;
+      box-shadow:0 1px 0 rgba(0,0,0,.04);
+    }
+    .section-title{font-weight:800;margin:0 0 14px 0;font-size:22px}
+
+    /* Resource tiles (now 3 columns) */
+    .resource-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px}
+    .resource{display:block;text-decoration:none;color:inherit}
+    .thumb{
+      border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f3f4f6;
+      aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+    }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .caption{text-align:center;font-weight:700;margin-top:10px;font-size:18px}
+    .divider{height:1px;background:repeating-linear-gradient(to right, #cfd5dd 0 6px, transparent 6px 12px);opacity:.9;margin:22px 0}
+
+    /* RIGHT column (CTA buttons) */
+    .side{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+    .cta{
+      display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:20px;
+      padding:18px 28px;border-radius:16px;min-width:280px;
+      background:linear-gradient(180deg,var(--cta0),var(--cta1));
+      box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+      border:3px solid #fff;outline:1px solid var(--cta-outline);text-shadow:0 1px 0 rgba(0,0,0,.2);
+      transition:transform .06s ease,filter .15s ease;
+    }
+    .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+    .cta.active{
+      filter:brightness(1.15);
+      background:linear-gradient(180deg,#cfe3f7,#e7f1fb);
+      color:#1f2937; text-shadow:none; outline-width:2px;
+    }
+
+    /* Right image */
+    .pic-wrap{width:100%;max-width:170px}
+    .pic-link{display:block;border:2px solid var(--panel-border);border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:#f3f4f6}
+    .pic{width:100%;height:100%;object-fit:contain;display:block}
+    .pic-cap{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
+
+    /* Home (same size as other pages) */
+    .home-link{
+      position:fixed; inset:14px auto auto 14px; z-index:50;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px;
+      background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12);
+      text-decoration:none;
+    }
+    .home-link:hover{transform:translateY(-1px)}
+    .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+    .home-link svg{width:22px;height:22px;fill:#374151}
+
+    @media (max-width:760px){
+      .layout{grid-template-columns:1fr;gap:28px}
+      .resource-grid{grid-template-columns:1fr} /* Stacks images vertically on small screens */
+      .side .cta{width:100%;min-width:unset}
+      .pic-wrap{max-width:100%}
+    }
+  </style>
+</head>
+<body>
+  <!-- Home button -->
+  <a class="home-link" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html" aria-label="Go to Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+  </a>
+
+  <main class="container">
+    <section class="layout">
+      <article class="info-card" aria-label="Helpful information links">
+        <h3 class="section-title">Information to Explore</h3>
+
+        <div class="resource-grid">
+            <a class="resource" target="_blank" rel="noopener noreferrer"
+             href=https://www.cancer.gov/types/prostate/patient/prostate-treatment-pdq#_142">
+            <div class="thumb">
+              <img alt="treatments from NCI" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/NCI.jpg" />
+            </div>
+            <div class="caption">Types of treatment from the National Cancer Institute</div>
+          </a>
+          
+          <a class="resource" target="_blank" rel="noopener noreferrer"
+             href="https://www.cancer.org/cancer/diagnosis-staging/tests/biopsy-and-cytology-tests/understanding-your-pathology-report/prostate-pathology.html">
+            <div class="thumb">
+              <img alt="patology reports from ACS" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/Pat.jpg" />
+            </div>
+            <div class="caption">How to understand pathology reports from the American Cancer Society</div>
+          </a>
+
+          <a class="resource" target="_blank" rel="noopener noreferrer"
+             href="https://www.youtube.com/watch?v=tKUYmLFa2JI">
+            <div class="thumb">
+              <img alt="story about patient" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/video.jpg" />
+            </div>
+            <div class="caption">Patient experience from Urology Care Foundation</div>
+          </a>
+
+        
+        </div>
+
+        <div class="divider" role="presentation"></div>
+      </article>
+
+      <aside class="side" aria-label="Actions">
+        <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html">Go back to the beginning</a>
+        <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/choosingtreatment.html">Go back to questions</a>
+
+        <div class="pic-wrap">
+          <a class="pic-link" target="_blank" rel="noopener noreferrer"
+             href="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Patient%20with%20Computer.jpg">
+            <img class="pic" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Patient%20with%20Computer.png" alt="Patient at a computer" />
+          </a>
+      
+        </div>
+      </aside>
+    </section>
+  </main>
+
+</body>
+</html>

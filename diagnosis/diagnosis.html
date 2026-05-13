@@ -1,0 +1,513 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Questions to Ask – Slide Layout</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#111827; --line:#d1d5db;
+    --panel:#dfdfdf; --panel-hover:#d6d6d6; --ring:0 0 0 3px rgba(59,130,246,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+  .container{max-width:1100px;margin:42px auto;padding:0 20px}
+  .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+  /* ==== HOME BUTTON – styles ==== */
+  .home-link{
+    position:fixed; inset:14px auto auto 14px; z-index:50; display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:10px; background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12); text-decoration:none;
+  }
+  .home-link:hover{transform:translateY(-1px)}
+  .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+  .home-link svg{width:22px;height:22px;fill:#374151}
+  /* ==== HOME BUTTON – styles END ==== */
+
+  /* Slide heading */
+  h1.slide-title {
+    font-size: clamp(2rem, 2.2vw + 1.2rem, 2.75rem);
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+    font-weight: 800;
+  }
+  h2.slide-title {
+    font-size: clamp(1.25rem, 1.2vw + 0.9rem, 1.75rem);
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+
+  /* Toolbar */
+  .toolbar{display:flex;gap:8px;align-items:center;margin:0 0 12px 0}
+  .tool-btn{
+    padding:8px 12px;border-radius:8px;border:1px solid var(--line);
+    background:#f5f6f8;color:#111;font-weight:700;cursor:pointer;
+    transition:transform .06s ease, background-color .15s ease;
+  }
+  .tool-btn:hover{background:#eef1f5;transform:translateY(-1px)}
+  .tool-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  .tool-btn[disabled]{opacity:.6;cursor:not-allowed}
+  .tool-btn[disabled]:hover{transform:none;background-color:#f5f6f8}
+
+  /* LEFT (Accordion) */
+  .stack{display:flex;flex-direction:column;gap:14px;min-width:300px}
+  .acc-header{
+    width:100%;display:flex;align-items:center;gap:10px;
+    padding:18px 20px 18px 46px;border:1px solid var(--line);
+    background:var(--panel);border-radius:6px;font-weight:800;cursor:pointer;
+    text-align:left;position:relative;transition:background-color .15s,transform .06s;
+    font-size:22px;
+  }
+  .acc-header::before{
+    content:"▸";
+    position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    font-size:35px; color:#4b5563; opacity:.95;
+  }
+  .acc-header[aria-expanded="true"]::before{ content:"▾" }
+  .acc-header:hover{background:var(--panel-hover);transform:translateY(-1px)}
+  .acc-header:focus-visible{outline:none;box-shadow:var(--ring)}
+  .acc-header .cat-icon{width:26px;height:26px;flex:0 0 26px;}
+  .acc-header .cat-icon svg{width:100%;height:100%;stroke:#000;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.8}
+
+  .acc-panel{margin:8px 0 12px 24px}
+  .q-list{list-style:none;margin:8px 0 0 0;padding:0;font-size:20px;line-height:1.7}
+  .q-list li{margin:10px 0;display:flex;align-items:flex-start;gap:10px}
+  .q-list input{margin-top:6px;transform:scale(1.15)}
+  .acc-panel[hidden]{display:none}
+
+  /* RIGHT (actions) */
+  .side{display:flex;flex-direction:column;gap:14px}
+
+  /* Main blue action buttons */
+  .cta{
+    display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:18px;
+    padding:14px 18px;border-radius:10px;min-width:280px;text-align:center;
+    background:linear-gradient(180deg,#6ea2cf,#588fbe);
+    box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+    border:3px solid #fff;outline:1px solid #c7d9ea;text-shadow:0 1px 0 rgba(0,0,0,.2);
+    transition:transform .06s ease,filter .15s ease;
+  }
+  .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+  .cta[disabled]{opacity:.55;cursor:not-allowed;filter:grayscale(0.35)}
+
+  /* Tool buttons in side panel */
+  .side .tool-btn{ width:100%; font-size:18px; padding:14px 18px; text-align:center }
+
+  .pic-wrap{width:100%;max-width:340px;margin-top:6px}
+  .pic{width:100%;height:auto;border:2px solid #c9ced6;border-radius:10px;display:block}
+
+  .hint{font-size:14px;color:#374151}
+
+  /* Hidden handout container for PDF/print/email rendering */
+  .print-stage{position:fixed;left:-10000px;top:-10000px;width:794px;padding:24px;background:#fff}
+
+  /* Handout outline styling (MATCHES HOME PAGE) */
+  .handout{ font-family: Arial, Helvetica, sans-serif; color:#0f172a; line-height:1.55; font-size:18px; }
+  .handout .frame{ border:6px solid #6aa1cc; border-radius:36px; padding:16px; }
+  .handout .chip{
+    display:block;text-align:center;font-weight:700;font-size:22px;color:#1b4e73;
+    background:#e8f3ff;border:4px solid #6aa1cc;border-radius:16px;padding:10px 14px;margin:8px auto 14px; width:fit-content; min-width:340px;
+  }
+  .handout .panel{ border:6px solid #6aa1cc;border-radius:28px;padding:16px;min-height:160px; }
+  .handout h4{ margin:0 0 8px; font-size:18px; }
+  .handout ul{margin:0;padding-left:22px}
+  .handout li{margin:8px 0}
+
+  @media (max-width:760px){
+    .layout{grid-template-columns:1fr;gap:28px}
+    .side .cta{width:100%;min-width:unset}
+  }
+</style>
+</head>
+<body>
+  <!-- ==== HOME BUTTON – element ==== -->
+  <a class="home-link" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html" aria-label="Go to Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+  </a>
+
+<a id="page-top"></a>
+
+<main class="container" aria-label="Slide-like layout">
+  <section class="layout">
+    <div>
+      <h1 class="slide-title">For people who were recently diagnosed</h1>
+      <h2 class="slide-title">Here you will find questions to ask your doctors and online resources to learn some basic information.</h2>
+      <ul>
+        <li><strong>Step 1:</strong> Select one or more sections to see the questions.</li>
+        <li><strong>Step 2: Select 3-5 questions</strong> you want to include in your handout.</li>
+        <li><strong>Step 3: </strong> Download or print the handout to bring to your care team.</li>
+        <li><strong>Step 4:</strong> Select <strong>‘Online Resources'</strong> to find more information.</li>
+      </ul>
+
+      <div class="toolbar" role="group" aria-label="Expand or collapse all">
+        <button id="expandAllBtn"  class="tool-btn" type="button">Expand all</button>
+        <button id="collapseAllBtn" class="tool-btn" type="button">Collapse all</button>
+      </div>
+
+      <div id="stack" class="stack" aria-label="Categories"></div>
+    </div>
+
+    <aside class="side" aria-label="Actions">
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html">Go back to the beginning</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/diagnosisinfo.html">Online Resources</a>
+
+      <div class="pic-wrap">
+        <img class="pic"
+             src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Patient%20and%20a%20doctor.png"
+             alt="Patient speaking with a doctor" />
+      </div>
+
+      <button id="downloadPdfBtn" class="tool-btn" type="button" disabled>Download PDF</button>
+      <button id="printBtn"       class="tool-btn" type="button" disabled>Print</button>
+      <!-- Optional email button; JS handles its absence safely -->
+      <!-- <button id="emailBtn" class="tool-btn" type="button" disabled>Email PDF</button> -->
+
+      <p id="selHint" class="hint">No questions selected yet.</p>
+    </aside>
+  </section>
+</main>
+
+<!-- hidden render stage for PDF/print/email -->
+<div id="printStage" class="print-stage" aria-hidden="true"></div>
+
+<script>
+  // ------- Data -------
+  const DATA = [
+    { title: 'General questions to ask', questions: [
+      'How was this diagnosis made?', 
+      'Are there any additional tests I need to understand cancer better?', 'What do “grade”, “stage”, “margin” mean?',
+      'How quickly does my cancer grow?', 'Am I at an increased risk of any other type of cancer?',
+      'What are the risks to my family because of my diagnosis?', 'How will the treatment affect my ability to have sex?', 'When should I search for a second opinion?'
+    ]},
+    { title: 'When should I decide upon treatment', questions: [
+      'How much time do I have to decide about my treatment?', 'How long does it take to hear back after I complete my tests?'
+    ]},
+    { title: 'Questions about healthcare team', questions: [
+      'Who will be part of my care team, and what is each person’s role?', 'Which doctors should I be seeing and when?',
+      'Is there a patient navigator or social worker I can talk to?', 'Who else should I talk to?', 'What should be my next step?'
+    ]},
+    { title: 'Ask a nurse where to find information', questions: [
+      'How could I access or use “my chart”?', 'Where do I get additional information on prostate cancer?'
+    ]},
+    { title: 'Ask a social worker about support and coping', questions: [
+      'Are there support groups or counseling services you recommend?', 'What should I tell my family and friends about prostate cancer?',
+      'How will cancer treatment affect my work, life, and other activities?'
+    ]},
+    { title: 'Ask a research nurse about clinical trials', questions: [
+      'What are the clinical trials available to me?', 'I would like to know more about clinical trials, who should I ask?',
+      'What expenses associated with a clinical trial may not be covered by insurance?'
+    ]}
+  ];
+
+  const RECOMMENDATIONS = [
+    '<b>Consider bringing a friend or loved one</b> to help you remember information shared during your appointment.',
+    '<b>Learn about your specific condition</b> from trusted sources of information.',
+    '<b>Your healthcare team welcomes your questions.</b> Don’t hesitate to ask to clarify anything you\'re unsure about.',
+    '<b>Your questions are important.</b> Sharing your questions at the beginning of the appointment will help address your concerns.',
+    '<b>Stay connected between visits.</b> Use the patient portal, phone, or email to reach the team when questions arise.',
+    '<b>Connect with others.</b> Support groups, social workers, and patient advocates can provide emotional support and resources.'
+  ];
+
+  let singleOpen = true;
+
+  const Icons = {
+    hourglass: () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12M6 21h12" /><path d="M7 3c0 5 5 5 5 9s-5 4-5 9M17 3c0 5-5 5-5 9s5 4 5 9" /><path d="M9 7h6M9 17h6" /></svg>`,
+    hug:        () => `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="6.5" r="2.3" /><circle cx="16" cy="6.5" r="2.3" /><path d="M3.5 18c2-4 5-5 8.5-5s6.5 1 8.5 5" /><path d="M6 14l2.5 2.5M18 14l-2.5 2.5" /></svg>`,
+    microscope: () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4l3 3" /><rect x="9.5" y="5.5" width="3" height="6" rx="1" /><path d="M7 13h10" /><path d="M5 19h14M7 13c-2 1-3 3-3 6" /></svg>`,
+    stethoscope:() => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v4a4 4 0 0 0 8 0V3" /><path d="M10 11v2a5 5 0 0 0 10 0v-1" /><circle cx="20" cy="12" r="1.8" /></svg>`,
+    book:       () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h10a3 3 0 0 1 3 3v11H7a3 3 0 0 0-3 3z" /><path d="M7 5v17" /><path d="M11 9h4M11 12h4" /></svg>`,
+    bulb:       () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a7 7 0 0 1 5 11c-1 1-2 2-2 3H9c0-1-1-2-2-3A7 7 0 0 1 12 3z" /><path d="M9 20h6M10 22h4" /></svg>`,
+    beaker:     () => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3h8M10 3v6L5 21h14l-5-12V3" /><path d="M7 16h10" /></svg>`
+  };
+
+  function iconFor(title){
+    const t = title.toLowerCase();
+    if (t.includes('time')) return Icons.hourglass();
+    if (t.includes('support') || t.includes('coping')) return Icons.hug();
+    if (t.includes('diagnosis') || t.includes('test')) return Icons.microscope();
+    if (t.includes('coordination') || t.includes('care')) return Icons.stethoscope();
+    if (t.includes('access') || t.includes('information')) return Icons.book();
+    if (t.includes('general')) return Icons.bulb();
+    if (t.includes('trial') || t.includes('opinion')) return Icons.beaker();
+    return Icons.bulb();
+  }
+
+  // Render accordion + checkbox lists
+  (function render(){
+    const stack = document.getElementById('stack');
+    DATA.forEach((cat, idx) => {
+      const id = `panel-${idx}`;
+      const btn = document.createElement('button');
+      btn.className = 'acc-header'; btn.type = 'button'; btn.id = `btn-${idx}`;
+      btn.setAttribute('aria-expanded','false'); btn.setAttribute('aria-controls', id);
+
+      const iconWrap = document.createElement('span'); iconWrap.className = 'cat-icon';
+      iconWrap.innerHTML = iconFor(cat.title);
+
+      const text = document.createElement('span'); text.textContent = ` ${cat.title}`;
+
+      const panel = document.createElement('div'); panel.className = 'acc-panel';
+      panel.id = id; panel.setAttribute('role','region'); panel.setAttribute('aria-labelledby', btn.id); panel.hidden = true;
+
+      const ul = document.createElement('ul'); ul.className = 'q-list';
+      cat.questions.forEach((q, i) => {
+        const li = document.createElement('li');
+        const cbId = `q-${idx}-${i}`;
+        li.innerHTML = `<input type="checkbox" id="${cbId}" />
+                        <label for="${cbId}">${q}</label>`;
+        ul.appendChild(li);
+      });
+      panel.appendChild(ul);
+
+      btn.appendChild(iconWrap); btn.appendChild(text);
+      btn.addEventListener('click', () => togglePanel(idx));
+      stack.appendChild(btn); stack.appendChild(panel);
+    });
+
+    document.getElementById('expandAllBtn').addEventListener('click', expandAll);
+    document.getElementById('collapseAllBtn').addEventListener('click', collapseAll);
+
+    // Actions
+    document.addEventListener('change', updateActionsEnabled);
+    document.getElementById('downloadPdfBtn').addEventListener('click', downloadSelectedAsPDF);
+    document.getElementById('printBtn').addEventListener('click', printSelected);
+    document.getElementById('emailBtn')?.addEventListener('click', emailSelectedPDF);
+  })();
+
+  function togglePanel(i){
+    const btn = document.getElementById(`btn-${i}`);
+    const panel = document.getElementById(`panel-${i}`);
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    if (singleOpen) collapseAll();
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    panel.hidden = open;
+    if (!open) panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  function expandAll(){
+    singleOpen = false;
+    DATA.forEach((_, idx) => {
+      document.getElementById(`btn-${idx}`).setAttribute('aria-expanded','true');
+      document.getElementById(`panel-${idx}`).hidden = false;
+    });
+    document.getElementById('stack').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+  function collapseAll(){
+    DATA.forEach((_, idx) => {
+      document.getElementById(`btn-${idx}`).setAttribute('aria-expanded','false');
+      document.getElementById(`panel-${idx}`).hidden = true;
+    });
+    singleOpen = true;
+  }
+
+  // ----- Selection helpers (same behavior as Code 1) -----
+  function getSelectedQuestions(){
+    return Array.from(document.querySelectorAll('.q-list input[type="checkbox"]:checked'))
+      .map(cb => cb.nextElementSibling.textContent.trim());
+  }
+
+  function updateActionsEnabled(){
+    const count = getSelectedQuestions().length;
+    const any = count > 0;
+    document.getElementById('downloadPdfBtn').disabled = !any;
+    document.getElementById('printBtn').disabled = !any;
+    const emailBtn = document.getElementById('emailBtn');
+    if (emailBtn) emailBtn.disabled = !any;
+    const hint = document.getElementById('selHint');
+    if (hint) hint.textContent = any ? `${count} question${count>1?'s':''} selected.` : 'No questions selected yet.';
+  }
+
+  // ===== NEW: Group selections by category (match Code 1 behavior) =====
+  function getSelectedByCategory(){
+    const grouped = new Map(); // key: idx => { title, items:[] }
+    document.querySelectorAll('.q-list input[type="checkbox"]:checked').forEach(cb => {
+      const parts = cb.id.split('-'); // q-<idx>-<i>
+      const idx = parseInt(parts[1], 10);
+      const title = DATA[idx]?.title || `Section ${idx+1}`;
+      const text = cb.nextElementSibling.textContent.trim();
+      if (!grouped.has(idx)) grouped.set(idx, { title, items: [] });
+      grouped.get(idx).items.push(text);
+    });
+    // preserve display order by DATA index
+    return Array.from(grouped.entries())
+                .sort((a,b)=>a[0]-b[0])
+                .map(([,val])=>val);
+  }
+
+  // ===== Handout (MATCH HOME PAGE; grouped by category) =====
+  function handoutHTML(selectedOrGrouped){
+    const instructions = `
+      <div class="panel">
+        <p>Here are the questions you choose to ask your doctors.</p>
+        <ul>
+          <li>Your doctors and nurses are happy to answer your questions. Don’t hesitate to ask!</li>
+          <li>It's okay to ask different doctors for help. Each one is an expert on a different part of your care—reach more than one expert!</li>
+          <li>Think about your most important questions for today. If you have more than 3–5 questions, you might need more than one visit to clarify all of them.</li>
+        </ul>
+      </div>`;
+
+    let questionsHTML = '';
+    if (Array.isArray(selectedOrGrouped) && selectedOrGrouped.length && typeof selectedOrGrouped[0] === 'string') {
+      // Backward-compat: flat array
+      questionsHTML = `<div class="panel"><ul>${selectedOrGrouped.map(q=>`<li>${q}</li>`).join('')}</ul></div>`;
+    } else {
+      const groups = Array.isArray(selectedOrGrouped) ? selectedOrGrouped : [];
+      questionsHTML = groups.length
+        ? groups.map(g => `<div class="panel"><h4>${g.title}</h4><ul>${g.items.map(q=>`<li>${q}</li>`).join('')}</ul></div>`).join('<div style="height:14px"></div>')
+        : `<div class="panel"><p>(Chosen questions appear here.)</p></div>`;
+    }
+
+    const recs = RECOMMENDATIONS.map(r => `<li>${r}</li>`).join('');
+
+    return `
+      <div class="handout">
+        <div class="frame">
+          <span class="chip">Questions that you chose</span>
+          ${instructions}
+          <div style="height:14px"></div>
+          ${questionsHTML}
+          <div style="height:18px"></div>
+          <span class="chip">Recommendations that other patients found helpful</span>
+          <div class="panel"><ul>${recs}</ul></div>
+        </div>
+      </div>`;
+  }
+
+  // Build hidden DOM for rendering/printing (now uses grouped categories)
+  function buildHandoutStage(){
+    const stage = document.getElementById('printStage');
+    const grouped = getSelectedByCategory();
+    stage.innerHTML = handoutHTML(grouped);
+    return stage.firstElementChild; // .handout
+  }
+
+  // ===== PDF (block-by-block pagination; EXACT AS Code 1) =====
+  async function createHandoutPDF(){
+    const any = getSelectedQuestions().length > 0;
+    if(!any) return null;
+
+    const root = buildHandoutStage();           // .handout
+    const frame = root.querySelector('.frame');
+
+    const pdf = new window.jspdf.jsPDF({ unit:'mm', format:'a4', compress:true });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const margin = 10;
+    const contentW = pageW - margin * 2;
+    const contentH = pageH - margin * 2;
+    const overlapPx = 6;
+
+    let cursorHmm = 0;
+
+    const blocks = Array.from(frame.children).filter(
+      el => el.classList.contains('chip') || el.classList.contains('panel')
+    );
+
+    for (const el of blocks) {
+      const canvas = await html2canvas(el, {
+        backgroundColor:'#ffffff',
+        scale: Math.min(2, window.devicePixelRatio || 1.5)
+      });
+
+      const pxPerMm = canvas.width / contentW;
+      const blockHmm = canvas.height / pxPerMm;
+
+      if (cursorHmm > 0 && cursorHmm + blockHmm > contentH) {
+        pdf.addPage();
+        cursorHmm = 0;
+      }
+
+      if (blockHmm <= contentH) {
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', margin, margin + cursorHmm, contentW, blockHmm);
+        cursorHmm += blockHmm + 2;
+      } else {
+        // Slice a very tall block across multiple pages with slight overlap
+        let y = 0;
+        const pageContentHPx = contentH * pxPerMm;
+        while (y < canvas.height) {
+          const sliceH = Math.min(pageContentHPx, canvas.height - y);
+          const c = document.createElement('canvas');
+          c.width = canvas.width;
+          c.height = sliceH;
+          c.getContext('2d').drawImage(canvas, 0, y, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+          const sliceHmm = sliceH / pxPerMm;
+
+          if (cursorHmm > 0) {
+            pdf.addPage();
+            cursorHmm = 0;
+          }
+          pdf.addImage(c.toDataURL('image/png'), 'PNG', margin, margin + cursorHmm, contentW, sliceHmm);
+          y += sliceH - overlapPx;
+          if (y < canvas.height) {
+            pdf.addPage();
+            cursorHmm = 0;
+          }
+        }
+        cursorHmm = 2;
+      }
+    }
+    return pdf;
+  }
+
+  // ----- Download as PDF -----
+  async function downloadSelectedAsPDF(){
+    const pdf = await createHandoutPDF();
+    if (!pdf) return;
+    pdf.save('questions-handout.pdf');
+  }
+
+  // ----- Print (same outline; grouped by category) -----
+  function printSelected(){
+    const selectedCount = getSelectedQuestions().length;
+    if(!selectedCount) return;
+    const grouped = getSelectedByCategory();
+    const html = `
+      <!doctype html><html><head><meta charset="utf-8">
+      <title>Questions Handout</title>
+      <style>${document.querySelector('style').innerHTML}</style>
+      </head><body onload="window.print()">
+        <div style="padding:24px;max-width:850px;margin:0 auto">${handoutHTML(grouped)}</div>
+      </body></html>`;
+    const w = window.open('', '_blank');
+    w.document.open(); w.document.write(html); w.document.close();
+  }
+
+  // ----- Email (unchanged; uses PDF builder and is optional) -----
+  async function emailSelectedPDF(){
+    const pdf = await createHandoutPDF();
+    if (!pdf) return;
+
+    const blob = pdf.output('blob');
+    const file = new File([blob], 'questions-handout.pdf', {type:'application/pdf'});
+
+    if (navigator.canShare && navigator.canShare({ files:[file] })){
+      await navigator.share({ files:[file], title:'Questions Handout', text:'Please see attached questions handout.' }).catch(()=>{});
+      return;
+    }
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = 'questions-handout.pdf'; a.click();
+    URL.revokeObjectURL(url);
+
+    const body = encodeURIComponent(
+      'Attached is my Questions Handout (PDF). If the attachment did not appear, I just downloaded it—please see the downloaded file.'
+    );
+    window.location.href = `mailto:?subject=${encodeURIComponent('Questions Handout')}&body=${body}`;
+  }
+</script>
+
+<!-- Deps for client-side PDF -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

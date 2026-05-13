@@ -1,0 +1,387 @@
+<!-- filepath: pages/complementary-integrative.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Complementary & Integrative Medicine — Patient Infographic</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --text:#1a1a1a;
+    --muted:#666666;
+    --blue:#5A9BD5;
+    --blue-dark:#4A7BA7;
+    --blue-light:#E8F1F8;
+    --card:#f8f8f8;
+    --border:#d4d4d4;
+    --warn:#d32f2f;
+    --shadow:0 2px 8px rgba(0,0,0,.1);
+    --radius:12px;
+    --chip:#E8F1F8;
+  }
+
+  /* Base */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height:1.6;
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Two-column layout */
+  .container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px 16px 64px;
+    display:grid;
+    grid-template-columns: 1fr 340px;  /* main | right rail */
+    gap:24px;
+    align-items:start;
+  }
+
+  /* Title sits alone in row 1 across both columns */
+  .title{
+    grid-column: 1 / -1;
+    grid-row: 1;
+    font-weight:900;color:var(--text);
+    font-size:clamp(26px,3.6vw,36px);
+    margin:6px 0 16px;letter-spacing:-.2px;
+  }
+
+  /* Main content + sidebar share row 2 */
+  .content-with-rail{
+    grid-column: 1;
+    grid-row: 2;
+    margin-right:0;
+  }
+
+  .right-rail{
+    grid-column: 2;
+    grid-row: 2;
+    position:sticky;
+    top:16px;
+    width:auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  @media (max-width:1050px){
+    .container{display:block}
+    .right-rail{position:static;margin:8px 0 18px}
+  }
+
+  .section-title{
+    color:var(--text);font-weight:800;
+    font-size:clamp(18px,2.2vw,22px);
+    margin:24px 0 12px;
+  }
+  .lead{max-width:82ch;margin:6px 0 8px;color:var(--text);font-size:16px}
+  .encourage{max-width:82ch;color:var(--muted);font-weight:400;margin:0 0 12px;font-size:15px}
+
+  /* Important */
+  .callout{
+    border-left:4px solid var(--warn);
+    background:#fff5f5;
+    padding:14px 16px;border-radius:var(--radius);
+    box-shadow:var(--shadow);margin:12px 0 20px;
+    border:2px solid #ffcdd2;
+  }
+  .callout b{color:var(--warn);font-weight:700}
+  .underline{ text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 2px }
+
+  /* Grid of cards */
+  .grid{
+    display:grid;gap:16px;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+  @media (max-width: 980px){ .grid{grid-template-columns: repeat(2,minmax(0,1fr))} }
+  @media (max-width: 680px){ .grid{grid-template-columns: 1fr} }
+
+  .card{
+    background:#ffffff;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:18px;
+    display:grid;gap:12px;
+  }
+  .card header{
+    display:grid;grid-template-columns: 48px 1fr;gap:12px;align-items:center;
+    padding-bottom:10px;border-bottom:2px solid #f0f0f0;
+  }
+  .icon{
+    width:48px;height:48px;border-radius:8px;
+    background:var(--blue-light);
+    display:grid;place-items:center;
+  }
+  .card h3{margin:0;color:var(--text);font-size:18px;font-weight:800}
+
+  .chip{
+    display:inline-block;
+    background:var(--chip);
+    padding:3px 12px;border-radius:20px;
+    font-size:.8rem;font-weight:700;color:var(--blue-dark);border:1px solid #d0e3f0
+  }
+  .block{display:grid;gap:6px}
+  .block .label{font-weight:800;color:var(--text);font-size:.9rem}
+  .list{margin:0;padding:0 0 0 18px;color:var(--text)}
+  .list li{margin:3px 0;font-size:15px}
+
+  /* Resources */
+  .resources{
+    margin-top:24px;padding:16px 18px;border:1px solid var(--border);
+    border-radius:var(--radius);background:#ffffff;box-shadow:var(--shadow)
+  }
+  .resources h3{margin:0 0 8px;color:var(--text);font-size:18px;font-weight:800}
+  .resources ul{padding-left:20px;margin:8px 0}
+  .resources li{margin:4px 0;color:var(--text)}
+
+  /* Right-rail buttons */
+  .cta{
+    display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:18px;
+    padding:14px 18px;border-radius:10px;text-align:center;
+    background:linear-gradient(180deg,#6ea2cf,#588fbe);
+    box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+    border:3px solid #fff;outline:1px solid #c7d9ea;text-shadow:0 1px 0 rgba(0,0,0,.2);
+    transition:transform .06s ease,filter .15s ease;
+  }
+  .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .cta:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.35)}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Complementary and Integrative Medicine</h1>
+
+    <!-- Right sidebar buttons -->
+    <aside class="right-rail" aria-label="Quick links">
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html">Go back to the beginning</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/complementary.html">Go back to questions</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/complementaryinfo.html">Online sources to explore</a>
+      <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/complementaryresources.html">Find integrative care providers</a>
+    </aside>
+
+    <!-- Main content -->
+    <div class="content-with-rail">
+      <h2 class="section-title">What is Complementary and Integrative Treatment?</h2>
+      <p class="lead">Exploring complementary and integrative therapies can be a helpful part of your care. Your care team can support you and answer questions.</p>
+      <p>To help you navigate this space, we summarized therapies based on evidence-based sources in the infographic below.</p>
+
+      <p class="callout">
+        <b>Important:</b> Always check with your doctor before starting any new therapy or supplement,
+        as <span class="underline">some may reduce the effectiveness of your treatment or cause harmful side effects</span>.
+      </p>
+
+      <h2 class="section-title">Recommended Complementary and Integrative Treatment</h2>
+
+      <!-- INFOGRAPHIC GRID -->
+      <section class="grid" aria-label="Infographic: complementary approaches by side effect">
+        <!-- 1 Fatigue -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="7" width="16" height="10" rx="2" stroke="#5A9BD5" stroke-width="2"/>
+                <rect x="19" y="10" width="2" height="4" fill="#5A9BD5"/>
+                <path d="M11 9l-2 3h3l-2 3" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Fatigue</h3>
+              <span class="chip">Energy & Stress</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Yoga</li><li>Tai Chi</li><li>Massage Therapy</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Increases energy and reduces stress.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>No known</div>
+          </div>
+        </article>
+
+        <!-- 2 Pain -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="8" stroke="#5A9BD5" stroke-width="2"/>
+                <circle cx="12" cy="12" r="3" stroke="#5A9BD5" stroke-width="2"/>
+                <path d="M15 6l3-3m-2 5l4-4" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Pain</h3>
+              <span class="chip">Comfort</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Acupuncture</li><li>Acupressure</li><li>Massage</li><li>Meditation</li><li>Physical Therapy</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Reduces pain perception; promotes relaxation.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>No known</div>
+          </div>
+        </article>
+
+         <!-- 4 Anxiety & Stress -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#5A9BD5" stroke-width="2"/>
+                <path d="M8 11c1-1 3-1 4 0M12 11c1-1 3-1 4 0M8 15c2 2 6 2 8 0" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Anxiety & Stress</h3>
+              <span class="chip">Mind–Body</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Acupressure</li><li>Meditation</li><li>Deep Breathing</li><li>Music Therapy</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Lowers stress; boosts mood.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>No known</div>
+          </div>
+        </article>
+        
+        <!-- 8 Neuropathy -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 12h16M12 4v16M7 7l10 10M17 7L7 17" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Neuropathy (Nerve Pain)</h3>
+              <span class="chip">Nerve</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Acupuncture</li><li>Physical Therapy</li><li>Essential Oils</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Relieves pain and improves nerve function.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>Essential oils can be toxic if ingested.</div>
+          </div>
+        </article>
+
+     
+
+        <!-- 5 Insomnia -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 4a7 7 0 1 0 5 11A8 8 0 0 1 15 4z" stroke="#5A9BD5" stroke-width="2" fill="none"/>
+                <circle cx="8" cy="6" r="1" fill="#5A9BD5"/><circle cx="6" cy="9" r="1" fill="#5A9BD5"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Insomnia (Trouble Sleeping)</h3>
+              <span class="chip">Sleep</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Guided Imagery</li><li>Herbal Teas (e.g., chamomile)</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Promotes relaxation and better sleep.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>Some herbal products, including certain teas, can interact with medicines (for example, hormone therapy). Check with your doctor.</div>
+          </div>
+        </article>
+
+        <!-- 6 Digestive Issues -->
+        <article class="card">
+          <header>
+            <div class="icon" aria-hidden="true">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 16c5-6 10-6 14-9-2 6-7 7-10 10" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 14c0 2 3 2 3 0s3-2 3 0" stroke="#5A9BD5" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Digestive Issues</h3>
+              <span class="chip">Gut</span>
+            </div>
+          </header>
+          <div class="block">
+            <div class="label">Try</div>
+            <ul class="list"><li>Probiotics</li><li>Peppermint Oil</li><li>Dietary Adjustments</li></ul>
+          </div>
+          <div class="block">
+            <div class="label">Why it helps</div>
+            <div>Eases bloating, diarrhea, and constipation.</div>
+          </div>
+          <div class="block">
+            <div class="label">Interactions</div>
+            <div>Probiotics may interact with antibiotics.</div>
+          </div>
+        </article>
+
+       
+      <!-- RESOURCES -->
+      <section class="resources" aria-labelledby="resources-heading">
+        <h3 id="resources-heading">Original Resources</h3>
+        <ul>
+          <li>
+            <a href="https://www.nccih.nih.gov/health/atoz#linkC" target="_blank" rel="noopener noreferrer">
+              Scientific guide to complementary medicine from the National Center for Complementary and Integrative Health
+            </a>
+          </li>
+          <li>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/35564468/" target="_blank" rel="noopener noreferrer">
+              Dawczak-Dębicka A, Kufel-Grabowska J, Bartoszkiewicz M, Perdyan A, Jassem J. Complementary and Alternative Therapies in Oncology. Int J Environ Res Public Health. 2022 Apr 21;19(9):5071. doi: 10.3390/ijerph19095071. PMID: 35564468; PMCID: PMC9104744.
+            </a>
+          </li>
+        </ul>
+        <p class="callout">
+          <b>Note:</b> Discuss any information you find with your healthcare providers to ensure it is relevant to your specific situation.
+        </p>
+      </section>
+    </div><!-- /content-with-rail -->
+  </div>
+</body>
+</html>

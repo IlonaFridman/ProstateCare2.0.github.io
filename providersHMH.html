@@ -1,0 +1,266 @@
+<!-- File: /public/diagnosisresources.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resources to explore</title>
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+      --panel:#ffffff; --panel-border:#c9ced6;
+      --cta0:#6ea2cf; --cta1:#588fbe; --cta-outline:#c7d9ea; --ring:0 0 0 3px rgba(59,130,246,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+
+    .container{max-width:1100px;margin:42px auto;padding:0 20px}
+    .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+    /* LEFT panel (white card) */
+    .info-card{
+      background:var(--panel);
+      border:2px solid var(--panel-border);
+      border-radius:8px;
+      padding:22px;
+      box-shadow:0 1px 0 rgba(0,0,0,.04);
+    }
+    .section-title{font-weight:800;margin:0 0 14px 0;font-size:22px}
+    .block{margin:18px 0}
+    .block h4{margin:0 0 6px 0;font-size:20px}
+    .block p{margin:4px 0}
+
+    /* RIGHT column (CTA links styled like buttons) */
+    .side{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+    .cta{
+      display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:20px;padding:18px 28px;border-radius:16px;
+      background:linear-gradient(180deg,var(--cta0),var(--cta1));min-width:280px;
+      box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+      border:3px solid #fff;outline:1px solid var(--cta-outline);text-shadow:0 1px 0 rgba(0,0,0,.2);
+      transition:transform .06s ease,filter .15s ease;
+    }
+    .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+    .cta.active{filter:brightness(1.15);background:linear-gradient(180deg,#cfe3f7,#e7f1fb);color:#1f2937;text-shadow:none;outline-width:2px}
+
+    /* Right image */
+    .pic-wrap{width:100%;max-width:340px}
+    .pic{width:100%;height:auto;border:2px solid var(--panel-border);border-radius:10px;display:block}
+
+    /* Home (little house) */
+    .home-link{
+      position:fixed; inset:14px auto auto 14px; z-index:50;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px;
+      background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12);
+      text-decoration:none;
+    }
+    .home-link:hover{transform:translateY(-1px)}
+    .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+    .home-link svg{width:22px;height:22px;fill:#374151}
+
+    /* Utility icon buttons — stacked vertically under Home (PDF + Email) */
+    .util-wrap{
+      position:fixed; left:14px; top:60px; z-index:50;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .util-btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px;
+      background:#fff; border:1px solid var(--line);
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      cursor:pointer;
+    }
+    .util-btn:hover{transform:translateY(-1px)}
+    .util-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+    .util-btn svg{width:22px;height:22px;stroke:#000;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.6}
+
+    @media (max-width:760px){
+      .layout{grid-template-columns:1fr;gap:28px}
+      .side .cta{width:100%;min-width:unset}
+      .pic-wrap{max-width:100%}
+      .util-wrap{left:14px; top:60px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Home button -->
+  <a class="home-link" href="https://ilonafridman.github.io/home.html" aria-label="Go to Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+  </a>
+
+  <!-- Utilities: Download Page as PDF + Email -->
+  <div class="util-wrap" role="group" aria-label="Page utilities">
+    <button id="pdfBtn" class="util-btn" type="button" aria-label="Download page as PDF" title="Download page as PDF">
+      <!-- page + down arrow (Sharpie style) -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 3h6l4 4v14H7z" />
+        <path d="M13 3v5h5" />
+        <path d="M12 11v7M9.5 15.5L12 18l2.5-2.5" />
+      </svg>
+    </button>
+    <button id="emailBtn" class="util-btn" type="button" aria-label="Email this page to myself" title="Email notes">
+      <!-- envelope -->
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3.5 6l8.5 6 8.5-6" />
+        <path d="M5 18l4.5-4.5M19 18l-4.5-4.5" />
+      </svg>
+    </button>
+  </div>
+
+  <main class="container">
+    <section class="layout">
+      <!-- LEFT: Resources list -->
+      <article class="info-card" aria-label="Care team resources">
+        <h3 class="section-title">Resources to explore</h3>
+
+        <div class="block">
+          <h4><strong>In the clinical office:</strong></h4>
+          <p>Nurse Practitioner: Marieta Branis</p>
+          <p>Advanced Nurse Practitioner: Jennifer Teperino</p>
+          <p>Nurse Navigator: Donna McGourty</p>
+          <p>Research Nurse: Alexa Zawada</p>
+          <p>Clinical Medical Assistant: Paloma Hernandez (x5414)</p>
+          <p><strong>Phone: 551-996-58-11</strong></p>
+        </div>
+
+        <div class="block">
+          <h4><strong>In HMH hospital system</strong></h4>
+          <p>EMPOWER Virtual Community – Lizzie Martinez, Oncology Nurse Breast Navigator</p>
+          <p>732-836-4679, <a href="mailto:Elizabeth.Martinez@hmhn.org">Elizabeth.Martinez@hmhn.org</a></p>
+        </div>
+
+        <div class="block">
+          <h4><strong>Nutritionist</strong></h4>
+          <p>Kanisha Parikh</p>
+          <p>551-996-2875</p>
+        </div>
+
+        <div class="block">
+          <h4><strong>Social work services</strong></h4>
+          <p>Jane Watson, LCSW</p>
+          <p>551-996-2599, <a href="mailto:Jane.Watson@hmhn.org">Jane.Watson@hmhn.org</a></p>
+        </div>
+
+        <div class="block">
+          <h4><strong>Financial services</strong></h4>
+          <p>Kathryn Koch, LSW</p>
+          <p>551-996-5861, <a href="mailto:Kathryn.Koch@hmhn.org">Kathryn.Koch@hmhn.org</a></p>
+        </div>
+      </article>
+
+      <!-- RIGHT: Nav buttons + image -->
+      <aside class="side" aria-label="Actions">
+        <a id="cta-questions"  class="cta" href="https://ilonafridman.github.io/diagnosis/diagnosis.html">Questions to ask</a>
+        <!-- NOTE: keep the spelled path 'daignosisinfo.html' to match other page -->
+        <a id="cta-helpful"    class="cta" href="https://ilonafridman.github.io/diagnosis/daignosisinfo.html">Helpful Information</a>
+        <a id="cta-resources"  class="cta" href="https://ilonafridman.github.io/diagnosis/diagnosisresources.html">Resources to explore</a>
+
+        <div class="pic-wrap">
+          <img class="pic" src="https://ilonafridman.github.io/diagnosis/Team.jpg" alt="Clinical team of healthcare professionals" />
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    // Active CTA highlight.
+    (function setActiveCTA(){
+      const href = location.href.toLowerCase();
+      const q = document.getElementById('cta-questions');
+      const h = document.getElementById('cta-helpful');
+      const r = document.getElementById('cta-resources');
+      [q,h,r].forEach(el => { el.classList.remove('active'); el.removeAttribute('aria-current'); });
+
+      if (href.includes('diagnosisresources.html')) {
+        r.classList.add('active'); r.setAttribute('aria-current','page');
+      } else if (href.includes('diagnosisinfo.html') || href.includes('daignosisinfo.html')) {
+        h.classList.add('active'); h.setAttribute('aria-current','page');
+      } else {
+        q.classList.add('active'); q.setAttribute('aria-current','page');
+      }
+    })();
+
+    // Email this page.
+    function collectPageInfo(){
+      const title = document.title || 'Page';
+      const url = location.href;
+      const blocks = Array.from(document.querySelectorAll('.info-card .block')).map(b => {
+        const heading = b.querySelector('h4')?.innerText?.trim() || '';
+        const lines = Array.from(b.querySelectorAll('p')).map(p => `- ${p.innerText.trim()}`).join('\n');
+        return `## ${heading}\n${lines}`;
+      });
+      const body = `${title}\n${url}\n\n${blocks.join('\n\n')}`;
+      return { subject: `Notes: ${title}`, body };
+    }
+    function handleEmail(){
+      const { subject, body } = collectPageInfo();
+      const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto; // Why: better for keyboard users
+    }
+    document.getElementById('emailBtn').addEventListener('click', handleEmail);
+
+    // PDF: download whole page.
+    async function downloadPageAsPDF(){
+      const el = document.querySelector('main');
+      await exportElementToPDF(el, `resources-page.pdf`);
+    }
+    document.getElementById('pdfBtn').addEventListener('click', downloadPageAsPDF);
+
+    async function exportElementToPDF(element, filename){
+      await document.fonts?.ready?.catch(()=>{});
+      const canvas = await html2canvas(element, {
+        backgroundColor: '#ffffff',
+        scale: Math.min(2, window.devicePixelRatio || 1.5)
+      });
+      const imgData = canvas.toDataURL('image/png');
+
+      const pdf = new window.jspdf.jsPDF({ unit:'mm', format:'a4', compress: true });
+      const pageWidth  = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const imgWidth = pageWidth;
+      const imgHeight = canvas.height * (imgWidth / canvas.width);
+
+      if (imgHeight <= pageHeight){
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      } else {
+        let y = 0;
+        const pxPerMm = canvas.width / imgWidth;
+        const pageHeightPx = pageHeight * pxPerMm;
+
+        while (y < canvas.height){
+          const pageCanvas = document.createElement('canvas');
+          pageCanvas.width = canvas.width;
+          pageCanvas.height = Math.min(pageHeightPx, canvas.height - y);
+          const ctx = pageCanvas.getContext('2d');
+          ctx.drawImage(canvas, 0, y, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
+          const pageData = pageCanvas.toDataURL('image/png');
+          if (y === 0){
+            pdf.addImage(pageData, 'PNG', 0, 0, imgWidth, pageHeight);
+          } else {
+            pdf.addPage();
+            pdf.addImage(pageData, 'PNG', 0, 0, imgWidth, pageHeight);
+          }
+          y += pageHeightPx;
+        }
+      }
+      pdf.save(filename);
+    }
+  </script>
+
+  <!-- Deps for client-side PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" integrity="sha256-jvW5C8Y4Xg7q7bQm3mQeZ0xjv4J1x2RQ6dHnZ5q5P1k=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" integrity="sha256-6m5o4uiz8v0QpVqQ1m4b1GZ1mJ6X7u7C2m2dRkFq7+0=" crossorigin="anonymous"></script>
+</body>
+</html>

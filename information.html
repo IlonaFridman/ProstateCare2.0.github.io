@@ -1,0 +1,313 @@
+<!-- File: /public/all-resources.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>All Resources – Prostate Cancer Journey</title>
+  <meta name="description" content="A single page that consolidates helpful breast cancer resources by section: Diagnosis, Choosing Treatment, During Treatment, After Diagnosis, and Complementary/Integrative Care." />
+  <style>
+    :root{
+      --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db;
+      --panel:#ffffff; --panel-border:#c9ced6;
+      --cta0:#6ea2cf; --cta1:#588fbe; --cta-outline:#c7d9ea; --ring:0 0 0 3px rgba(59,130,246,.35);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font:20px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+
+    .container{max-width:1100px;margin:42px auto;padding:0 20px}
+    .layout{display:grid;grid-template-columns:1fr 380px;gap:42px;align-items:start}
+
+    /* ==== HOME BUTTON – styles ==== */
+    .home-link{
+      position:fixed; inset:14px auto auto 14px; z-index:50; display:inline-flex; align-items:center; justify-content:center;
+      width:40px; height:40px; border-radius:10px; background:#fff; border:1px solid var(--line); box-shadow:0 6px 16px rgba(0,0,0,.12); text-decoration:none;
+    }
+    .home-link:hover{transform:translateY(-1px)}
+    .home-link:focus-visible{outline:none;box-shadow:var(--ring)}
+    .home-link svg{width:22px;height:22px;fill:#374151}
+
+    /* GROUP DIVIDERS */
+    .group{margin-top:34px; padding-top:18px; border-top:6px double var(--panel-border)}
+    .group:first-of-type{border-top:none; margin-top:0; padding-top:0}
+    .group-title{margin:0 0 12px 0; font-weight:900; font-size:18px; color:#374151; letter-spacing:.02em}
+    .group-sub{margin:0 0 12px 0; color:var(--muted); font-size:14px}
+
+    /* LEFT card */
+    .info-card{
+      background:var(--panel);
+      border:2px solid var(--panel-border);
+      border-radius:8px;
+      padding:22px;
+      box-shadow:0 1px 0 rgba(0,0,0,.04);
+    }
+    .section-title{font-weight:800;margin:0 0 14px 0;font-size:22px}
+    .section-sub{margin:0 0 18px 0;color:var(--muted);font-size:16px}
+    .resource-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:24px}
+    .resource{display:block;text-decoration:none;color:inherit}
+    .thumb{
+      border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f3f4f6;
+      aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+    }
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+    .caption{text-align:center;font-weight:700;margin-top:10px;font-size:18px}
+    .divider{height:1px;background:repeating-linear-gradient(to right, #cfd5dd 0 6px, transparent 6px 12px);opacity:.9;margin:22px 0}
+
+    /* RIGHT column (CTA buttons) */
+    .side{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+    .cta{
+      display:inline-block;text-decoration:none;color:#fff;font-weight:700;font-size:20px;
+      padding:18px 28px;border-radius:16px;min-width:280px;
+      background:linear-gradient(180deg,var(--cta0),var(--cta1));
+      box-shadow:0 4px 0 0 rgba(0,0,0,.12) inset,0 8px 24px rgba(0,0,0,.18);
+      border:3px solid #fff;outline:1px solid var(--cta-outline);text-shadow:0 1px 0 rgba(0,0,0,.2);
+      transition:transform .06s ease,filter .15s ease;
+    }
+    .cta:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .cta:focus-visible{outline:none;box-shadow:var(--ring)}
+    .cta.active{
+      filter:brightness(1.15);
+      background:linear-gradient(180deg,#cfe3f7,#e7f1fb);
+      color:#1f2937; text-shadow:none; outline-width:2px;
+    }
+
+    /* Right: small nav */
+    .nav-card{
+      width:100%; background:#fff; border:2px solid var(--panel-border); border-radius:12px; padding:16px;
+    }
+    .nav-title{margin:0 0 8px 0;font-weight:800;font-size:18px}
+    .nav{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .nav a{display:block;text-decoration:none;color:#1f2937;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-weight:600}
+    .nav a:hover{transform:translateY(-1px)}
+
+    /* Right image */
+    .pic-wrap{width:100%;max-width:220px}
+    .pic-link{display:block;border:2px solid var(--panel-border);border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:#f3f4f6}
+    .pic{width:100%;height:100%;object-fit:contain;display:block}
+    .pic-cap{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
+
+    @media (max-width:760px){
+      .layout{grid-template-columns:1fr;gap:28px}
+      .resource-grid{grid-template-columns:1fr}
+      .side .cta{width:100%;min-width:unset}
+      .pic-wrap{max-width:100%}
+      .group{margin-top:28px; padding-top:14px}
+    }
+  </style>
+</head>
+<body>
+  <!-- ==== HOME BUTTON – element ==== -->
+  <a class="home-link" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html" aria-label="Go to Home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+  </a>
+
+  <main class="container">
+    <section class="layout">
+      <div>
+        <!-- GROUP 1: daignosisinfo.html -->
+        <div class="group">
+         <!-- 1) DIAGNOSIS -->
+          <article id="diagnosis" class="info-card" aria-label="Helpful information links - Diagnosis">
+            <h3 class="section-title">Explore after Being Diagnosed</h3>
+         
+            <div class="resource-grid">
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.hackensackmeridianhealth.org/en/services/urology/prostate-cancer">
+                <div class="thumb">
+                  <img alt="Hackensack Meridian Health Information about Breast Cancer" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/HMH_info.jpg" />
+                </div>
+                <div class="caption">Hackensack Meridian Health information about prostate cancer</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.org/cancer/types/prostate-cancer.html">
+                <div class="thumb">
+                  <img alt="Breast Cancer Basics  (ACS)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Terms_ACS.jpg" />
+                </div>
+                <div class="caption">Prostate cancer basics from the American Cancer Society</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.org/cancer/understanding-cancer/glossary.html">
+                <div class="thumb">
+                  <img alt="Medical Terminology (ACS Glossary)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/diagnosis/Terminology.jpg" />
+                </div>
+                <div class="caption">Medical terminology from the American Cancer Society</div>
+              </a>
+            </div>
+            <div class="divider" role="presentation"></div>
+          </article>
+        </div>
+
+        <!-- GROUP 2: choosingtreatmentinfo.html -->
+        <div class="group">
+         
+          <!-- 2) CHOOSING TREATMENT -->
+          <article id="choosing-treatment" class="info-card" aria-label="Helpful information links - Choosing Treatment">
+            <h3 class="section-title">Explore when Choosing Treatment</h3>
+          
+            <div class="resource-grid">
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.gov/types/prostate/patient/prostate-treatment-pdq#_142">
+                <div class="thumb">
+                  <img alt="treatments from NCI" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/NCI.jpg" />
+                </div>
+                <div class="caption">Types of treatment from the National Cancer Institute</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.org/cancer/diagnosis-staging/tests/biopsy-and-cytology-tests/understanding-your-pathology-report/breast-pathology/breast-cancer-pathologyhttps://www.cancer.org/cancer/diagnosis-staging/tests/biopsy-and-cytology-tests/understanding-your-pathology-report/prostate-pathology.html">
+                <div class="thumb">
+                  <img alt="patology reports from ACS" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/Pat.jpg" />
+                </div>
+                <div class="caption">How to understand pathology reports from the American Cancer Society</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.youtube.com/watch?v=tKUYmLFa2JI">
+                <div class="thumb">
+                  <img alt="story about patient" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/choosingtreatment/video.jpg" />
+                </div>
+                <div class="caption">Patients sharing their experience with prostate cancer</div>
+              </a>
+            </div>
+            <div class="divider" role="presentation"></div>
+          </article>
+        </div>
+
+        <!-- GROUP 3: treatmentinfo.html -->
+        <div class="group">
+        
+
+          <!-- 3) DURING TREATMENT -->
+          <article id="treatment" class="info-card" aria-label="Helpful information links - During Treatment">
+            <h3 class="section-title">Information to Explore During Treatment</h3>
+         
+            <div class="resource-grid">
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.org/cancer/managing-cancer/side-effects.html">
+                <div class="thumb">
+                  <img alt="treatments side effects from ACS" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/treatment/ACS_treatment.png"/>
+                </div>
+                <div class="caption">Managing cancer-related side effects from the American Cancer Society</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancersupportcommunity.org/managing-side-effects">
+                <div class="thumb">
+                  <img alt="treatment side effects CSC" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/treatment/CSC_treatment.png" />
+                </div>
+                <div class="caption">Navigating cancer from the Cancer Support Community</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.mdanderson.org/podcast.html">
+                <div class="thumb">
+                  <img alt="podcast" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/treatment/podcast.jpg" />
+                </div>
+                <div class="caption">CancerWise podcast from the MD Anderson Cancer Center</div>
+              </a>
+            </div>
+            <div class="divider" role="presentation"></div>
+          </article>
+        </div>
+
+        <!-- GROUP 4: afterdiagnosisinfo.html -->
+        <div class="group">
+          
+
+          <!-- 4) AFTER DIAGNOSIS / AFTER TREATMENT -->
+          <article id="after-diagnosis" class="info-card" aria-label="Helpful information links - After Diagnosis">
+            <h3 class="section-title">Information to Explore after Treatment</h3>
+        
+            <div class="resource-grid">
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.gov/publications/patient-education/life-after-treatment.pdf">
+                <div class="thumb">
+                  <img alt="Life After Treatment (NCI)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/aftertreatment/NCI_AfterTreatment.png" />
+                </div>
+                <div class="caption">Life after treatment from the National Cancer Institute</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.hackensackmeridianhealth.org/en/services/cancer-care/survivorship">
+                <div class="thumb">
+                  <img alt="Survivorship Services (HMH)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/aftertreatment/HMH_Survivorship.png" />
+                </div>
+                <div class="caption">Survivorship services at Hackensack Meridian Health</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://events.hackensackmeridianhealth.org/c/calendar/ab003a8d-d5fc-4178-9f67-18a42708bab9">
+                <div class="thumb">
+                  <img alt="Calendar" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/aftertreatment/events.png" />
+                </div>
+                <div class="caption">Calendar of events for cancer survivors at Hackensack Meridian Health</div>
+              </a>
+            </div>
+            <div class="divider" role="presentation"></div>
+          </article>
+        </div>
+
+        <!-- GROUP 5: complementaryinfo.html -->
+        <div class="group">
+         
+          <!-- 5) COMPLEMENTARY / INTEGRATIVE -->
+          <article id="complementary" class="info-card" aria-label="Helpful information links - Complementary/Integrative">
+            <h3 class="section-title">Information about Complementary & Integrative Therapy</h3>
+         
+            <div class="resource-grid">
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.cancer.org/cancer/supportive-care/integrative-medicine.html">
+                <div class="thumb">
+                  <img alt="Understanding Integrative (Holistic) Medicine (ACS)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/Integrative.png" />
+                </div>
+                <div class="caption">Understanding integrative (holistic) medicine from the American Cancer Society</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://www.nccih.nih.gov/health/herbsataglance">
+                <div class="thumb">
+                  <img alt="Herbs at a Glance (NCCIH)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/Herbs.jpg" />
+                </div>
+                <div class="caption">Herbs at a glance from the National Center for Complementary and Integrative Health</div>
+              </a>
+
+              <a class="resource" target="_blank" rel="noopener noreferrer"
+                 href="https://imconsortium.org/page/member-listing">
+                <div class="thumb">
+                  <img alt="Member Listing (IM Consortium)" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/complementary/Map.jpg" />
+                </div>
+                <div class="caption">Directory of integrative therapy centers (by country and U.S. states).</div>
+              </a>
+            </div>
+            <div class="divider" role="presentation"></div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="side" aria-label="Actions">
+        <a class="cta" href="https://ilonafridman.github.io/ProstateCare2.0.github.io/home.html">Go back to the beginning</a>
+  
+
+   
+        <div class="pic-wrap">
+
+            <img class="pic" src="https://ilonafridman.github.io/ProstateCare2.0.github.io/internet.jpg" alt="Patient at a computer" />
+          </a>
+    
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

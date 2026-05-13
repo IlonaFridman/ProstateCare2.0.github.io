@@ -1,0 +1,123 @@
+<!-- file: instructions.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9776BZ75M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N9776BZ75M');
+</script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Care Questions — Instructions</title>
+    <meta name="description" content="Guide and instructions for using Care Questions." />
+    <style>
+      :root{
+        --bg:#f6f9fc; --card:#fff; --ink:#0f172a; --muted:#475569;
+        --ring:rgba(59,130,246,.45); --shadow:0 10px 25px rgba(2,8,23,.12), 0 2px 6px rgba(2,8,23,.08);
+        --radius:22px; --brand:#2563eb; --brand-strong:#1d4ed8;
+      }
+      *{ box-sizing:border-box }
+      html,body{ height:100% }
+      body{
+        margin:0; font-family:Arial, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue";
+        color:var(--ink); background:var(--bg);
+      }
+      .wrap{ min-height:100%; display:flex; align-items:flex-start; justify-content:center; padding:28px 16px; }
+      .card{
+        position:relative; width:clamp(320px, 960px, 92vw);
+        background:var(--card); border:1px solid #e5e7eb; border-radius:var(--radius);
+        box-shadow:var(--shadow); padding:20px; overflow:hidden;
+      }
+      .close{
+        position:absolute; right:10px; top:10px; width:36px; height:36px; border-radius:999px; border:none;
+        background:#efefef; cursor:pointer; line-height:36px; text-align:center; font-size:18px;
+      }
+      .close:focus-visible{ outline:3px solid var(--ring); outline-offset:3px }
+      .layout{ display:grid; gap:16px; grid-template-columns:1fr; }
+      @media (min-width:768px){ .layout{ grid-template-columns:1.3fr 1fr } }
+      h1{ margin:2px 0 10px; font-size:32px; line-height:1.2 }
+      p{ margin:0 0 12px }
+      .lede{ color:var(--muted) }
+      ul{ margin:10px 0 8px 22px }
+      li{ line-height:1.5 }
+      .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px }
+      .btn{
+        display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:800;
+        border-radius:12px; padding:12px 16px; border:1px solid transparent; cursor:pointer;
+      }
+      .btn-primary{ background:linear-gradient(180deg,var(--brand),var(--brand-strong)); color:#fff; box-shadow:var(--shadow) }
+      .btn-secondary{ background:#f1f5f9; color:#0b2a5d; border-color:#c7d9ea; border:1px solid #c7d9ea }
+      .btn:focus-visible{ outline:3px solid var(--ring); outline-offset:2px }
+      .media{
+        width:100%; min-height:220px; background:#f7fafc; border:1px solid #e5e7eb; border-radius:16px;
+        overflow:hidden; box-shadow:0 2px 10px rgba(2,8,23,.06)
+      }
+      .media img{ width:100%; height:100%; object-fit:cover; display:block }
+    </style>
+  </head>
+  <body>
+    <main class="wrap" role="main">
+      <section class="card" aria-labelledby="introTitle">
+        <!-- Back to home (close) -->
+        <a class="close"
+           href="./home.html"
+           aria-label="Back to home">✕</a>
+
+        <div class="layout">
+          <div>
+            <h1 id="introTitle">The guide for your cancer journey</h1>
+
+            <p class="lede">
+              Finding out you have cancer can feel confusing and scary. It might seem like you're getting lots of puzzle pieces of
+              information and it's hard to see the whole picture.
+            </p>
+
+            <p><strong>You don’t have to figure it all out at once!</strong></p>
+
+            <p>We’ve broken things down into several steps that outline your journey. For each step, you'll find:</p>
+            <ul>
+              <li>Questions to help you talk to your doctors and nurses.</li>
+              <li>Good websites with safe and helpful information.</li>
+            </ul>
+
+            <p><strong>You're in control.</strong> Explore the section that feels right for you, or select “Start Here” to see a shorter list of questions.</p>
+
+            <div class="actions" role="group" aria-label="Instruction actions">
+              <!-- Explore home -->
+              <a class="btn btn-primary" href="./home.html" rel="noopener">Explore here</a>
+
+              <!-- Open Start Here modal on home via deep-link -->
+              <a class="btn btn-secondary" href="./home.html#start" rel="noopener">Open “Start here”</a>
+            </div>
+          </div>
+
+          <figure class="media" aria-label="Prostate cancer information booklets">
+            <img
+              src="./ProstateBooklets.png"
+              alt="A set of prostate cancer information booklets laid out together."
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <!-- Minimal script: mark that instructions were seen (optional but useful) -->
+    <script>
+      (function () {
+        function markSeen(){ try{ localStorage.setItem('cq_seen_instructions','1'); }catch(_){} }
+        document.addEventListener('DOMContentLoaded', () => {
+          // mark on any exit route
+          document.querySelectorAll('a[href$="home.html"], a[href$="home.html#start"], .close')
+            .forEach(a => a.addEventListener('click', markSeen, { passive:true }));
+        });
+      })();
+    </script>
+  </body>
+</html>
