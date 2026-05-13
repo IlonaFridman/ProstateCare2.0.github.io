@@ -58,9 +58,33 @@
         overflow:hidden; box-shadow:0 2px 10px rgba(2,8,23,.06)
       }
       .media img{ width:100%; height:100%; object-fit:cover; display:block }
+    
+      .site-header{ display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#f0f7ff; border-bottom:1.5px solid #b5d4f4; flex-wrap:wrap; gap:8px; }
+      .nav-card-btn{ display:inline-flex; align-items:flex-start; gap:7px; text-decoration:none; background:#fff; color:#0C447C; border:1.5px solid #b5d4f4; padding:7px 12px; border-radius:10px; font-family:Arial,sans-serif; cursor:pointer; transition:background .15s; appearance:none; }
+      .nav-card-btn:hover{ background:#e6f1fb; }
+      .nav-btn-text{ display:flex; flex-direction:column; gap:1px; }
+      .nav-btn-main{ font-size:12px; font-weight:700; line-height:1.2; color:#0C447C; }
+      .nav-btn-sub{ font-size:10px; font-weight:400; color:#5F5E5A; line-height:1.2; }
     </style>
   </head>
   <body>
+    <header class="site-header" role="banner">
+      <span style="font-weight:700;font-size:14px;color:#185FA5;">Instructions</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <a class="nav-card-btn" href="./home.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3.1 2.5 10.1a1 1 0 0 0-.4.8v9a1 1 0 0 0 1 1H9a1 1 0 0 0 1-1v-5h4v5a1 1 0 0 0 1 1h5.9a1 1 0 0 0 1-1v-9a1 1 0 0 0-.4-.8L12 3.1z"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Home</span><span class="nav-btn-sub">Back to main page</span></span>
+        </a>
+        <a class="nav-card-btn" href="./careteam.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4 4-7 9-7s9 3 9 7"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Meet your care team</span><span class="nav-btn-sub">Who does what in your care</span></span>
+        </a>
+        <a class="nav-card-btn" href="./information.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="nav-btn-text"><span class="nav-btn-main">Trusted websites</span><span class="nav-btn-sub">Safe places to learn more</span></span>
+        </a>
+      </div>
+    </header>
     <main class="wrap" role="main">
       <section class="card" aria-labelledby="introTitle">
         <!-- Back to home (close) -->
