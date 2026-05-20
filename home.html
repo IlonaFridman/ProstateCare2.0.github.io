@@ -161,11 +161,6 @@
   <body>
     <header class="container header" style="justify-content:space-between;align-items:center;padding:8px 16px;background:#f0f7ff;border-bottom:1.5px solid #b5d4f4;">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-        <span class="font-toggle-wrap" aria-label="Text size">
-          <span class="font-toggle-label">Text</span>
-          <button class="ft-btn active" data-size="normal" aria-label="Normal text size">A</button>
-          <button class="ft-btn" data-size="large" aria-label="Large text size" style="font-size:17px;">A+</button>
-        </span>
         <a class="top-button nav-card-btn" href="./careteam.html">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4 4-7 9-7s9 3 9 7"/></svg>
           <span class="nav-btn-text"><span class="nav-btn-main">Meet your care team</span><span class="nav-btn-sub">Who does what in your care</span></span>
@@ -709,22 +704,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js" crossorigin="anonymous"></script>
-  
-<script id="font-toggle-js">
-(function(){
-  var K='bc_font_large';
-  function apply(large){
-    document.body.classList.toggle('font-large',large);
-    document.querySelectorAll('.ft-btn').forEach(function(b){b.classList.toggle('active',large?b.dataset.size==='large':b.dataset.size==='normal');});
-    try{localStorage.setItem(K,large?'1':'0');}catch(e){}
-  }
-  var s;try{s=localStorage.getItem(K);}catch(e){}
-  window.addEventListener('DOMContentLoaded',function(){
-    apply(s==='1');
-    document.querySelectorAll('.ft-btn').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.size==='large');});});
-  });
-})();
-</script>
 
 <style id="bc-mobile-menu-css">
 .bc-hamburger{display:none}

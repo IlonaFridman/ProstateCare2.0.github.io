@@ -133,11 +133,6 @@
         Home
       </a>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-        <span class="font-toggle-wrap" aria-label="Text size">
-          <span class="font-toggle-label">Text</span>
-          <button class="ft-btn active" data-size="normal" aria-label="Normal text size">A</button>
-          <button class="ft-btn" data-size="large" aria-label="Large text size" style="font-size:17px;">A+</button>
-        </span>
         <a class="nav-card-btn" href="../careteam.html">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/><path d="M3 21c0-4 4-7 9-7s9 3 9 7"/></svg>
           <span class="nav-btn-text"><span class="nav-btn-main">Meet your care team</span><span class="nav-btn-sub">Who does what in your care</span></span>
@@ -599,15 +594,6 @@
     <button class="sticky-pr" id="stickyPrint" onclick="document.getElementById('printBtn').click()" disabled>&#9113; Print</button>
   </div>
 </div>
-
-<script id="font-toggle-js">
-(function(){
-  var K='bc_font_large';
-  function apply(large){document.body.classList.toggle('font-large',large);document.querySelectorAll('.ft-btn').forEach(function(b){b.classList.toggle('active',large?b.dataset.size==='large':b.dataset.size==='normal');});try{localStorage.setItem(K,large?'1':'0');}catch(e){}}
-  var s;try{s=localStorage.getItem(K);}catch(e){}
-  window.addEventListener('DOMContentLoaded',function(){apply(s==='1');document.querySelectorAll('.ft-btn').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.size==='large');});});});
-})();
-</script>
 <script id="sticky-js">
 (function(){
   function upd(){var n=document.querySelectorAll('.q-list input[type="checkbox"]:checked').length;var c=document.getElementById('stickyCount'),d=document.getElementById('stickyDownload'),p=document.getElementById('stickyPrint');if(c)c.textContent=n>0?n+' question'+(n>1?'s':'')+' selected':'No questions selected yet';if(d)d.disabled=n===0;if(p)p.disabled=n===0;}
@@ -633,25 +619,21 @@
 
 
 <style id="bc-mobile-menu-css">
-.bc-hamburger{display:none}
-@media (max-width:768px){
-  .bc-hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;margin-left:auto;flex-shrink:0;background:#185FA5;color:#fff;border:none;border-radius:10px;cursor:pointer}
-  .bc-hamburger:hover{background:#0C447C}
-  header .top-button,header > a.nav-card-btn,header > button.nav-card-btn,header > div > a.nav-card-btn,header > div > button.nav-card-btn{display:none !important}
-  body.bc-menu-open{overflow:hidden}
-  body.bc-menu-open::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9998}
-  body.bc-menu-open header{position:fixed !important;top:0;right:0;bottom:0;left:auto;width:85vw;max-width:340px;z-index:9999;background:#fff !important;box-shadow:-4px 0 16px rgba(0,0,0,.18);display:flex !important;flex-direction:column;align-items:stretch;padding:64px 16px 20px;gap:10px;overflow-y:auto;height:100vh;border:none !important}
-  body.bc-menu-open header > *{flex-shrink:0;width:auto}
-  body.bc-menu-open header > div{display:flex !important;flex-direction:column;width:100%;gap:10px;background:transparent !important;padding:0 !important;align-items:stretch !important}
-  body.bc-menu-open header .top-button,body.bc-menu-open header a.nav-card-btn,body.bc-menu-open header button.nav-card-btn,body.bc-menu-open header > div > a.nav-card-btn,body.bc-menu-open header > div > button.nav-card-btn{display:flex !important;width:100%;padding:14px 16px;background:#185FA5 !important;color:#fff !important;border:none;border-radius:10px;text-decoration:none;align-items:center;gap:10px;box-sizing:border-box;font-weight:600}
-  body.bc-menu-open header .top-button svg,body.bc-menu-open header .nav-card-btn svg{stroke:#fff !important;flex-shrink:0}
-  body.bc-menu-open header .nav-btn-text{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
-  body.bc-menu-open header .nav-btn-main{color:#fff !important;font-size:15px;font-weight:700}
-  body.bc-menu-open header .nav-btn-sub{color:rgba(255,255,255,.85) !important;font-size:12px;font-weight:400}
-  body.bc-menu-open .bc-hamburger{position:absolute;top:12px;right:12px;background:transparent;color:#185FA5}
-  body.bc-menu-open .bc-hamburger:hover{background:rgba(0,0,0,.05)}
-  body.bc-menu-open .font-toggle-wrap{margin:0 !important;align-self:flex-start}
-}
+.bc-hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;margin-left:auto;flex-shrink:0;background:#185FA5;color:#fff;border:none;border-radius:10px;cursor:pointer}
+.bc-hamburger:hover{background:#0C447C}
+header .top-button,header > a.nav-card-btn,header > button.nav-card-btn,header > div > a.nav-card-btn,header > div > button.nav-card-btn{display:none !important}
+body.bc-menu-open{overflow:hidden}
+body.bc-menu-open::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9998}
+body.bc-menu-open header{position:fixed !important;top:0;right:0;bottom:0;left:auto;width:85vw;max-width:340px;z-index:9999;background:#fff !important;box-shadow:-4px 0 16px rgba(0,0,0,.18);display:flex !important;flex-direction:column;align-items:stretch;padding:64px 16px 20px;gap:10px;overflow-y:auto;height:100vh;border:none !important}
+body.bc-menu-open header > *{flex-shrink:0;width:auto}
+body.bc-menu-open header > div{display:flex !important;flex-direction:column;width:100%;gap:10px;background:transparent !important;padding:0 !important;align-items:stretch !important}
+body.bc-menu-open header .top-button,body.bc-menu-open header a.nav-card-btn,body.bc-menu-open header button.nav-card-btn,body.bc-menu-open header > div > a.nav-card-btn,body.bc-menu-open header > div > button.nav-card-btn{display:flex !important;width:100%;padding:14px 16px;background:#185FA5 !important;color:#fff !important;border:none;border-radius:10px;text-decoration:none;align-items:center;gap:10px;box-sizing:border-box;font-weight:600}
+body.bc-menu-open header .top-button svg,body.bc-menu-open header .nav-card-btn svg{stroke:#fff !important;flex-shrink:0}
+body.bc-menu-open header .nav-btn-text{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+body.bc-menu-open header .nav-btn-main{color:#fff !important;font-size:15px;font-weight:700}
+body.bc-menu-open header .nav-btn-sub{color:rgba(255,255,255,.85) !important;font-size:12px;font-weight:400}
+body.bc-menu-open .bc-hamburger{position:absolute;top:12px;right:12px;background:transparent;color:#185FA5}
+body.bc-menu-open .bc-hamburger:hover{background:rgba(0,0,0,.05)}
 </style>
 <script id="bc-mobile-menu-js">
 (function(){
