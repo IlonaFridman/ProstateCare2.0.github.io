@@ -151,6 +151,10 @@
           <span class="nav-btn-text"><span class="nav-btn-main">How to use this guide</span><span class="nav-btn-sub">Instructions and tips</span></span>
         </a>
       </div>
+    
+      <button class="bc-hamburger" type="button" aria-label="Menu" aria-expanded="false" onclick="document.body.classList.toggle('bc-menu-open');this.setAttribute('aria-expanded',document.body.classList.contains('bc-menu-open')?'true':'false')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+      </button>
     </header>
   <div class="journey-bar">
     <a class="jb-home" href="../home.html">&#8962; Home</a>
@@ -627,5 +631,43 @@
 })();
 </script>
 
-</body>
+
+<style id="bc-mobile-menu-css">
+.bc-hamburger{display:none}
+@media (max-width:768px){
+  .bc-hamburger{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;padding:0;margin-left:auto;flex-shrink:0;background:#185FA5;color:#fff;border:none;border-radius:10px;cursor:pointer}
+  .bc-hamburger:hover{background:#0C447C}
+  header .top-button,header > a.nav-card-btn,header > button.nav-card-btn,header > div > a.nav-card-btn,header > div > button.nav-card-btn{display:none !important}
+  body.bc-menu-open{overflow:hidden}
+  body.bc-menu-open::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9998}
+  body.bc-menu-open header{position:fixed !important;top:0;right:0;bottom:0;left:auto;width:85vw;max-width:340px;z-index:9999;background:#fff !important;box-shadow:-4px 0 16px rgba(0,0,0,.18);display:flex !important;flex-direction:column;align-items:stretch;padding:64px 16px 20px;gap:10px;overflow-y:auto;height:100vh;border:none !important}
+  body.bc-menu-open header > *{flex-shrink:0;width:auto}
+  body.bc-menu-open header > div{display:flex !important;flex-direction:column;width:100%;gap:10px;background:transparent !important;padding:0 !important;align-items:stretch !important}
+  body.bc-menu-open header .top-button,body.bc-menu-open header a.nav-card-btn,body.bc-menu-open header button.nav-card-btn,body.bc-menu-open header > div > a.nav-card-btn,body.bc-menu-open header > div > button.nav-card-btn{display:flex !important;width:100%;padding:14px 16px;background:#185FA5 !important;color:#fff !important;border:none;border-radius:10px;text-decoration:none;align-items:center;gap:10px;box-sizing:border-box;font-weight:600}
+  body.bc-menu-open header .top-button svg,body.bc-menu-open header .nav-card-btn svg{stroke:#fff !important;flex-shrink:0}
+  body.bc-menu-open header .nav-btn-text{display:flex;flex-direction:column;align-items:flex-start;gap:2px}
+  body.bc-menu-open header .nav-btn-main{color:#fff !important;font-size:15px;font-weight:700}
+  body.bc-menu-open header .nav-btn-sub{color:rgba(255,255,255,.85) !important;font-size:12px;font-weight:400}
+  body.bc-menu-open .bc-hamburger{position:absolute;top:12px;right:12px;background:transparent;color:#185FA5}
+  body.bc-menu-open .bc-hamburger:hover{background:rgba(0,0,0,.05)}
+  body.bc-menu-open .font-toggle-wrap{margin:0 !important;align-self:flex-start}
+}
+</style>
+<script id="bc-mobile-menu-js">
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    var hdr=document.querySelector('header');
+    if(!hdr)return;
+    hdr.addEventListener('click',function(e){
+      var t=e.target.closest('.nav-card-btn, .top-button');
+      if(t && !t.classList.contains('bc-hamburger')){
+        document.body.classList.remove('bc-menu-open');
+      }
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape')document.body.classList.remove('bc-menu-open');
+    });
+  });
+})();
+</script></body>
 </html>
