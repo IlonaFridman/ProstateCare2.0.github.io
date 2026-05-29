@@ -29,36 +29,61 @@
       }
       .wrap{ min-height:100%; display:flex; align-items:flex-start; justify-content:center; padding:28px 16px; }
       .card{
-        position:relative; width:clamp(320px, 960px, 92vw);
+        position:relative; width:clamp(320px, 980px, 92vw);
         background:var(--card); border:1px solid #e5e7eb; border-radius:var(--radius);
-        box-shadow:var(--shadow); padding:20px; overflow:hidden;
+        box-shadow:var(--shadow); padding:24px; overflow:hidden;
       }
       .close{
         position:absolute; right:10px; top:10px; width:36px; height:36px; border-radius:999px; border:none;
         background:#efefef; cursor:pointer; line-height:36px; text-align:center; font-size:18px;
+        text-decoration:none; color:inherit; display:inline-grid; place-items:center; z-index:2;
       }
       .close:focus-visible{ outline:3px solid var(--ring); outline-offset:3px }
-      .layout{ display:grid; gap:16px; grid-template-columns:1fr; }
-      @media (min-width:768px){ .layout{ grid-template-columns:1.3fr 1fr } }
+      .layout{ display:grid; gap:24px; grid-template-columns:1fr; align-items:stretch; }
+      @media (min-width:768px){ .layout{ grid-template-columns:1.12fr .88fr } }
       h1{ margin:2px 0 10px; font-size:32px; line-height:1.2 }
       p{ margin:0 0 12px }
       .lede{ color:var(--muted) }
       ul{ margin:10px 0 8px 22px }
       li{ line-height:1.5 }
-      .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px }
+
+      .text-col{ display:flex; flex-direction:column; }
       .btn{
-        display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:800;
+        display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; font-weight:800;
         border-radius:12px; padding:12px 16px; border:1px solid transparent; cursor:pointer;
+        transition:transform .12s ease, filter .12s ease, box-shadow .12s ease;
       }
+      .btn:hover{ transform:translateY(-1px); filter:brightness(1.04) }
+      .btn:active{ transform:translateY(0) }
       .btn-primary{ background:linear-gradient(180deg,var(--brand),var(--brand-strong)); color:#fff; box-shadow:var(--shadow) }
-      .btn-secondary{ background:#f1f5f9; color:#0b2a5d; border-color:#c7d9ea; border:1px solid #c7d9ea }
       .btn:focus-visible{ outline:3px solid var(--ring); outline-offset:2px }
-      .media{
-        width:100%; min-height:220px; background:#f7fafc; border:1px solid #e5e7eb; border-radius:16px;
-        overflow:hidden; box-shadow:0 2px 10px rgba(2,8,23,.06)
+
+      /* "Ready when you are" sits directly below the text */
+      .end-cta{ margin-top:auto; padding-top:20px; border-top:1px solid #eef2f7; }
+      .end-cta h2{ margin:0 0 4px; font-size:22px; line-height:1.25; color:var(--ink) }
+      .end-cta .note{ margin:0 0 14px; color:var(--muted) }
+      .btn-lg{
+        font-size:19px; padding:15px 30px; border-radius:14px; align-self:flex-start;
+        animation:pulse 2.6s ease-in-out infinite;
       }
-      .media img{ width:100%; height:100%; object-fit:cover; display:block }
-    
+      @keyframes pulse{
+        0%,100%{ box-shadow:0 10px 25px rgba(37,99,235,.28) }
+        50%{ box-shadow:0 10px 34px rgba(37,99,235,.55) }
+      }
+      @media (prefers-reduced-motion: reduce){ .btn-lg{ animation:none } }
+
+      /* Walkthrough fills the right column and matches the text height exactly */
+      .video-col{ display:flex }
+      .video-frame{
+        width:100%; max-width:340px; height:560px; margin:0 auto;
+        border:1px solid #e5e7eb; border-radius:22px; overflow:hidden;
+        box-shadow:var(--shadow); background:#D9E6F3;
+      }
+      @media (min-width:768px){ .video-frame{ height:100%; min-height:460px } }
+      .video-frame iframe{ width:100%; height:100%; border:0; display:block }
+
+      noscript{ display:block; margin:12px 0; color:#b91c1c; font-weight:700 }
+
       .site-header{ display:flex; justify-content:space-between; align-items:center; padding:8px 16px; background:#f0f7ff; border-bottom:1.5px solid #b5d4f4; flex-wrap:wrap; gap:8px; }
       .nav-card-btn{ display:inline-flex; align-items:flex-start; gap:7px; text-decoration:none; background:#fff; color:#0C447C; border:1.5px solid #b5d4f4; padding:7px 12px; border-radius:10px; font-family:Arial,sans-serif; cursor:pointer; transition:background .15s; appearance:none; }
       .nav-card-btn:hover{ background:#e6f1fb; }
@@ -84,69 +109,71 @@
           <span class="nav-btn-text"><span class="nav-btn-main">Trusted websites</span><span class="nav-btn-sub">Safe places to learn more</span></span>
         </a>
       </div>
-    
+
       <button class="bc-hamburger" type="button" aria-label="Menu" aria-expanded="false" onclick="document.body.classList.toggle('bc-menu-open');this.setAttribute('aria-expanded',document.body.classList.contains('bc-menu-open')?'true':'false')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
       </button>
     </header>
     <main class="wrap" role="main">
       <section class="card" aria-labelledby="introTitle">
-        <!-- Back to home (close) -->
-        <a class="close"
-           href="./home.html"
-           aria-label="Back to home">✕</a>
+        <a class="close" href="./home.html" aria-label="Back to home" data-mark-seen>✕</a>
 
         <div class="layout">
-          <div>
+          <div class="text-col">
             <h1 id="introTitle">The guide for your cancer journey</h1>
-
             <p class="lede">
               Finding out you have cancer can feel confusing and scary. It might seem like you're getting lots of puzzle pieces of
               information and it's hard to see the whole picture.
             </p>
-
             <p><strong>You don’t have to figure it all out at once!</strong></p>
-
             <p>We’ve broken things down into several steps that outline your journey. For each step, you'll find:</p>
             <ul>
               <li>Questions to help you talk to your doctors and nurses.</li>
               <li>Good websites with safe and helpful information.</li>
             </ul>
+            <p><strong>You're in control.</strong> Watch the short guide, then explore the section that feels right for you.</p>
 
-            <p><strong>You're in control.</strong> Explore the section that feels right for you, or select “Start Here” to see a shorter list of questions.</p>
-
-            <div class="actions" role="group" aria-label="Instruction actions">
-              <!-- Explore home -->
-
-              <!-- Open Start Here modal on home via deep-link -->
-              <a class="btn btn-primary" style="font-size:18px;padding:16px 28px;box-shadow:0 4px 18px rgba(24,95,165,.35);" href="home.html#start" data-mark-seen>▷ Open “Start here”</a>
+            <div class="end-cta">
+              <h2>Ready when you are</h2>
+              <p class="note">A short list of questions to ask your doctor.</p>
+              <a class="btn btn-primary btn-lg" href="home.html#start" data-mark-seen>Start here</a>
             </div>
           </div>
 
-          <figure class="media" aria-label="Prostate cancer information booklets">
-            <img
-              src="./ProstateBooklets.png"
-              alt="A set of prostate cancer information booklets laid out together."
-              loading="eager"
-              decoding="async"
-            />
-          </figure>
+          <div class="video-col">
+            <div class="video-frame" aria-label="A short animated guide to using Care Questions">
+              <iframe src="./care-questions-prostate-walkthrough.html"
+                      title="How to use Care Questions — a short animated guide"
+                      loading="lazy"></iframe>
+            </div>
+          </div>
         </div>
+
+        <noscript>
+          Tip: JavaScript is off. “Start here” still works via the #start link.
+        </noscript>
       </section>
     </main>
 
-    <!-- Minimal script: mark that instructions were seen (optional but useful) -->
     <script>
       (function () {
-        function markSeen(){ try{ localStorage.setItem('cq_seen_instructions','1'); }catch(_){} }
-        document.addEventListener('DOMContentLoaded', () => {
-          // mark on any exit route
-          document.querySelectorAll('a[href$="home.html"], a[href$="home.html#start"], .close')
-            .forEach(a => a.addEventListener('click', markSeen, { passive:true }));
+        const INTRO_KEY = 'cq_intro_seen_session_v1';
+        function markSeen(){ try{ sessionStorage.setItem(INTRO_KEY,'1'); }catch(e){} }
+        document.addEventListener('click', function(e){
+          const a = e.target.closest('a[data-mark-seen]');
+          if (a) { markSeen(); }
+        });
+        document.addEventListener('keydown', function(e){
+          if (e.key !== 'Enter' && e.key !== ' ') return;
+          const a = document.activeElement;
+          if (a && a.matches('a[data-mark-seen]')) { markSeen(); }
+        });
+        window.addEventListener('message', function(e){
+          if (e && e.data === 'careq:start-here') { markSeen(); window.location.href = 'home.html#start'; }
         });
       })();
     </script>
-  
+
 <style id="bc-mobile-menu-css">
 .bc-hamburger{display:none}
 @media (max-width:768px){

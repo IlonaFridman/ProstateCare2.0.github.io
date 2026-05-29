@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How to use Care Questions — a short guide</title>
+<style>
+  :root{
+    --screen:#F0F6FC; --ink:#042C53; --ink2:#0C447C; --accent:#378ADD; --accent-strong:#185FA5;
+    --teal:#0F6E56; --teal-soft:#E1F5EE; --accent-soft:#E6F1FB; --card:#FFFFFF; --line:rgba(4,44,83,.14);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:#D9E6F3;font-family:-apple-system,"Segoe UI",Roboto,system-ui,sans-serif;color:var(--ink2)}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+  .stage{position:relative;width:100%;max-width:440px;height:100%;margin:0 auto;background:var(--screen);overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+  .segs{position:absolute;top:14px;left:16px;right:16px;display:flex;gap:5px;z-index:6}
+  .seg{flex:1;height:4px;border-radius:4px;background:rgba(4,44,83,.20);overflow:hidden}
+  .seg b{display:block;height:100%;width:0;background:var(--accent);border-radius:4px}
+
+  .scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 30px 104px;opacity:0;pointer-events:none}
+  .scene.on{opacity:1;pointer-events:auto}
+  .h{font-family:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;font-size:27px;font-weight:600;line-height:1.3;color:var(--ink);margin:0;letter-spacing:-.2px}
+  .sub{font-size:18px;line-height:1.45;color:var(--ink2);margin:15px 0 0}
+  .kicker{font-size:15px;font-weight:600;color:var(--accent-strong);margin:0 0 20px;letter-spacing:.3px}
+
+  .ic{width:84px;height:84px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:var(--accent-strong)}
+  .ic.teal{background:var(--teal-soft);color:var(--teal)}
+  .ic svg{width:42px;height:42px}
+
+  .steplist{display:flex;flex-direction:column;gap:11px;width:100%;max-width:320px;text-align:left}
+  .step{display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 14px}
+  .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);font-weight:600;display:flex;align-items:center;justify-content:center;font-size:15px}
+  .step span{font-size:16px;font-weight:500;color:var(--ink)}
+
+  .pills{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center}
+  .pill{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:11px 18px;font-size:16px;font-weight:600;color:var(--ink)}
+  .pill svg{width:20px;height:20px}.pill .n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+
+  .card{width:100%;max-width:312px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 16px 14px;text-align:left;box-shadow:0 10px 26px rgba(4,44,83,.12)}
+  .card .ct{font-size:14px;font-weight:600;color:var(--accent-strong);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  .card .ct svg{width:18px;height:18px}
+  .row{display:flex;align-items:center;gap:11px;padding:7px 0;font-size:15px;color:var(--ink)}
+  .box{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;background:transparent}
+  .box.ck{background:var(--accent);border-color:var(--accent)} .box svg{width:14px;height:14px;opacity:0}.box.ck svg{opacity:1}
+  .cardfoot{margin-top:11px;padding-top:11px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink2);display:flex;align-items:center;gap:8px;justify-content:center}
+  .cardfoot svg{width:17px;height:17px;color:var(--accent-strong)}
+  .siterow{display:flex;align-items:center;gap:11px;padding:8px 0;font-size:15px;color:var(--ink)}
+  .siterow .g{flex:none;width:26px;height:26px;border-radius:7px;background:var(--teal-soft);color:var(--teal);display:flex;align-items:center;justify-content:center}
+  .siterow .g svg{width:16px;height:16px}
+  .siterow .bar{height:9px;border-radius:5px;background:#D6E3F1;flex:1}
+  .safe{flex:none;display:flex;align-items:center;gap:4px;color:var(--teal);font-size:12.5px;font-weight:600}
+  .safe svg{width:14px;height:14px}
+
+  .cta{position:relative;display:inline-flex;align-items:center;gap:10px;margin-top:8px;background:var(--accent-strong);color:#F2F8FE;font-size:20px;font-weight:600;padding:16px 32px;border-radius:34px;text-decoration:none;box-shadow:0 10px 24px rgba(24,95,165,.4);animation:breathe 2.4s ease-in-out infinite}
+  .cta svg{width:22px;height:22px}
+  .finger{position:absolute;right:-8px;bottom:-26px;width:34px;height:34px;color:var(--ink);animation:tap 1.5s ease-in-out infinite}
+  .finger svg{width:34px;height:34px}
+
+  .brand{position:absolute;left:20px;bottom:24px;display:flex;align-items:center;gap:8px;color:var(--accent-strong);font-size:15px;font-weight:600;z-index:6}
+  .brand svg{width:20px;height:20px}
+  .rail{position:absolute;right:16px;bottom:84px;display:flex;flex-direction:column;gap:13px;z-index:7}
+  .ctl{width:48px;height:48px;border-radius:50%;border:none;background:rgba(4,44,83,.10);color:var(--accent-strong);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .1s}
+  .ctl:active{transform:scale(.92)} .ctl svg{width:24px;height:24px}
+  .overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:5}
+  .overlay.show{display:flex} .overlay svg{width:72px;height:72px;color:rgba(4,44,83,.5)}
+
+  .a1,.a2,.a3,.pop,.r1,.r2,.r3,.r4,.r5,.s1,.s2,.s3{opacity:0}
+  .scene.on .a1{animation:up .55s ease both}
+  .scene.on .a2{animation:up .55s ease .18s both}
+  .scene.on .a3{animation:up .55s ease .36s both}
+  .scene.on .pop{animation:pop .55s cubic-bezier(.2,.7,.3,1.25) .06s both}
+  .scene.on .r1{animation:up .5s ease .10s both}
+  .scene.on .r2{animation:up .5s ease .26s both}
+  .scene.on .r3{animation:up .5s ease .42s both}
+  .scene.on .r4{animation:up .5s ease .58s both}
+  .scene.on .r5{animation:up .5s ease .74s both}
+  .scene.on .s1{animation:pop .5s cubic-bezier(.2,.7,.3,1.25) .2s both}
+  .scene.on .s2{animation:pop .5s cubic-bezier(.2,.7,.3,1.25) .4s both}
+  .scene.on .s3{animation:pop .5s cubic-bezier(.2,.7,.3,1.25) .6s both}
+  @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @keyframes pop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+  @keyframes tap{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+  @media (max-width:340px){.h{font-size:24px}.sub{font-size:16px}.step span{font-size:15px}}
+</style>
+</head>
+<body>
+<h1 class="sr-only">How to use Care Questions: a short animated guide. A cancer diagnosis can feel overwhelming, but you do not have to figure it all out at once. Your journey is broken into five steps: after being diagnosed, choosing treatment, during treatment, after treatment, and integrative therapy. In each step you get two things: a checklist of questions to print and bring to your doctors, and safe, helpful websites. When you are ready, start here with a short list of questions.</h1>
+
+<div class="stage" id="stage">
+ <div class="segs" id="segs"></div>
+
+ <div class="scene on" data-i="0">
+  <div class="ic pop" id="ic0"></div>
+  <p class="h a1">A cancer diagnosis can feel confusing and scary.</p>
+  <p class="sub a2">That is completely normal.</p>
+ </div>
+
+ <div class="scene" data-i="1">
+  <div class="ic pop" id="ic1"></div>
+  <p class="h a1">You don't have to figure it all out at once.</p>
+ </div>
+
+ <div class="scene" data-i="2">
+  <p class="kicker a1">Your journey, one step at a time</p>
+  <div class="steplist">
+   <div class="step r1"><div class="num">1</div><span>After being diagnosed</span></div>
+   <div class="step r2"><div class="num">2</div><span>Choosing treatment</span></div>
+   <div class="step r3"><div class="num">3</div><span>During treatment</span></div>
+   <div class="step r4"><div class="num">4</div><span>After treatment</span></div>
+   <div class="step r5"><div class="num">5</div><span>Integrative therapy</span></div>
+  </div>
+ </div>
+
+ <div class="scene" data-i="3">
+  <p class="h a1">Open any step. You'll find two things.</p>
+  <div class="pills">
+   <div class="pill s1"><span class="n" style="background:var(--accent-soft);color:var(--accent-strong)">1</span><span id="pq"></span>Questions</div>
+   <div class="pill s2"><span class="n" style="background:var(--teal-soft);color:var(--teal)">2</span><span id="pw"></span>Websites</div>
+  </div>
+ </div>
+
+ <div class="scene" data-i="4">
+  <p class="kicker a1">1 — Questions for your appointment</p>
+  <div class="card pop">
+   <p class="ct"><span id="cic"></span>Pick the questions you want to ask</p>
+   <div class="row r2"><span class="box ck" id="b1"></span>What stage is my prostate cancer?</div>
+   <div class="row r3"><span class="box ck" id="b2"></span>What are my treatment options?</div>
+   <div class="row r4"><span class="box" id="b3"></span>Who is on my care team?</div>
+   <div class="cardfoot a3"><span id="pr"></span><span id="dl"></span>Print or download to take with you</div>
+  </div>
+ </div>
+
+ <div class="scene" data-i="5">
+  <p class="kicker a1">2 — Safe websites to learn more</p>
+  <div class="card pop">
+   <p class="ct" style="color:var(--teal)"><span id="wic"></span>eResources in every step</p>
+   <div class="siterow r2"><span class="g" id="g1"></span><span class="bar"></span><span class="safe"><span id="sf1"></span>Trusted</span></div>
+   <div class="siterow r3"><span class="g" id="g2"></span><span class="bar" style="flex:.7"></span><span class="safe"><span id="sf2"></span>Trusted</span></div>
+   <div class="cardfoot a3">Reliable information, chosen for you</div>
+  </div>
+ </div>
+
+ <div class="scene" data-i="6">
+  <p class="h a1">Ready when you are.</p>
+  <a class="cta pop" id="startBtn" href="home.html#start" target="_top">Start here<span id="cta-arrow"></span><span class="finger" id="ctaFinger"></span></a>
+  <p class="sub a3" style="margin-top:34px">A short list of questions to ask your doctor.</p>
+ </div>
+
+ <div class="overlay" id="overlay"></div>
+ <div class="brand"><span id="brandIcon"></span>Care Questions</div>
+ <div class="rail">
+  <button class="ctl" id="play" aria-label="Play or pause"></button>
+  <button class="ctl" id="replay" aria-label="Replay from the start"></button>
+ </div>
+</div>
+
+<script>
+(function(){
+  var st='stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  var I={
+    help:'<svg viewBox="0 0 24 24" fill="none" '+st+'><circle cx="12" cy="12" r="9"/><path d="M9.4 9.3a2.6 2.6 0 1 1 3.7 2.4c-1 .5-1.1 1-1.1 1.8"/><circle cx="12" cy="16.6" r=".7" fill="currentColor" stroke="none"/></svg>',
+    heart:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
+    chat:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M8 9h8"/><path d="M8 12.3h5"/></svg>',
+    globe:'<svg viewBox="0 0 24 24" fill="none" '+st+'><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18c-2.6-2.7-2.6-15.3 0-18z"/></svg>',
+    hand:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M8 11.5V5.6a1.5 1.5 0 0 1 3 0V11"/><path d="M11 11V8.4a1.5 1.5 0 0 1 3 0V11"/><path d="M14 11.2V9.8a1.5 1.5 0 0 1 3 0V13.5c0 3.1-2.1 5.2-5.2 5.2-2.1 0-3.9-1-5-3l-1.7-3a1.4 1.4 0 0 1 2.3-1.6L8.4 12"/></svg>',
+    play:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7 5v14l11-7z"/></svg>',
+    pause:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="7" y="5" width="3.6" height="14" rx="1.4"/><rect x="13.4" y="5" width="3.6" height="14" rx="1.4"/></svg>',
+    refresh:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M20 11a8 8 0 1 0-2 5.3"/><path d="M20 4.5V11h-6.5"/></svg>',
+    check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+    printer:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M6 9V3h12v6"/><path d="M6 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1"/><rect x="7" y="13" width="10" height="7" rx="1"/></svg>',
+    download:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M12 4v10"/><path d="M8 11l4 4 4-4"/><path d="M5 19h14"/></svg>',
+    arrow:'<svg viewBox="0 0 24 24" fill="none" '+st+'><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>'
+  };
+  function set(id,svg){var e=document.getElementById(id);if(e)e.innerHTML=svg;}
+  set('ic0',I.help);set('ic1',I.heart);set('brandIcon',I.heart);
+  set('pq',I.chat);set('pw',I.globe);set('cic',I.chat);set('wic',I.globe);
+  set('b1',I.check);set('b2',I.check);set('b3',I.check);
+  set('pr',I.printer);set('dl',I.download);set('g1',I.globe);set('g2',I.globe);
+  set('sf1',I.check);set('sf2',I.check);set('ctaFinger',I.hand);set('cta-arrow',I.arrow);
+  document.getElementById('overlay').innerHTML=I.play;
+
+  var segWrap=document.getElementById('segs');
+  var scenes=[].slice.call(document.querySelectorAll('.scene'));
+  for(var k=0;k<scenes.length;k++){var d=document.createElement('div');d.className='seg';d.innerHTML='<b></b>';segWrap.appendChild(d);}
+  var fills=[].slice.call(document.querySelectorAll('.seg b'));
+  var dur=[5000,4600,7000,4400,6600,5800,7200];
+
+  var idx=0,playing=true,sceneStart=performance.now(),paused=0;
+  var playBtn=document.getElementById('play'),overlay=document.getElementById('overlay'),stage=document.getElementById('stage');
+  playBtn.innerHTML=I.pause;document.getElementById('replay').innerHTML=I.refresh;
+
+  function goTo(i){
+    idx=i;paused=0;sceneStart=performance.now();
+    scenes.forEach(function(s,n){if(n===i){void s.offsetWidth;s.classList.add('on');}else s.classList.remove('on');});
+    fills.forEach(function(f,n){f.style.width=(n<i?'100%':'0%');});
+  }
+  function setPlaying(p){
+    playing=p;
+    if(p){sceneStart=performance.now();playBtn.innerHTML=I.pause;overlay.classList.remove('show');}
+    else{paused+=performance.now()-sceneStart;playBtn.innerHTML=I.play;overlay.classList.add('show');}
+  }
+  function atEnd(){return idx===scenes.length-1&&!playing&&(paused+(performance.now()-sceneStart))>=dur[idx];}
+  function loop(now){
+    if(playing){
+      var e=paused+(now-sceneStart),d=dur[idx];
+      fills[idx].style.width=Math.min(e/d,1)*100+'%';
+      if(e>=d){if(idx<scenes.length-1)goTo(idx+1);else{playing=false;playBtn.innerHTML=I.refresh;overlay.classList.add('show');}}
+    }
+    requestAnimationFrame(loop);
+  }
+  playBtn.addEventListener('click',function(ev){ev.stopPropagation();if(atEnd()){goTo(0);setPlaying(true);return;}setPlaying(!playing);});
+  document.getElementById('replay').addEventListener('click',function(ev){ev.stopPropagation();goTo(0);setPlaying(true);});
+  stage.addEventListener('click',function(){if(atEnd()){goTo(0);setPlaying(true);return;}setPlaying(!playing);});
+
+  var startBtn=document.getElementById('startBtn');
+  startBtn.addEventListener('click',function(ev){
+    ev.stopPropagation();
+    try{ if(window.parent && window.parent!==window){ window.parent.postMessage('careq:start-here','*'); } }catch(e){}
+  });
+
+  goTo(0);
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
